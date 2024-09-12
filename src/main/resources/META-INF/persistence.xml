@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="com.erp_restaurante_jar_0.0.1-SNAPSHOTPU" transaction-type="RESOURCE_LOCAL">
+    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+    <class>com.erp.restaurante.Historialsalarios</class>
+    <class>com.erp.restaurante.Descuento</class>
+    <class>com.erp.restaurante.Permisos</class>
+    <class>com.erp.restaurante.Empleado</class>
+    <class>com.erp.restaurante.Persona</class>
+    <class>com.erp.restaurante.Ventas</class>
+    <class>com.erp.restaurante.Impuesto</class>
+    <class>com.erp.restaurante.Vacaciones</class>
+    <class>com.erp.restaurante.FacturasImpuesto</class>
+    <class>com.erp.restaurante.Ingredientes</class>
+    <class>com.erp.restaurante.Usuarios</class>
+    <class>com.erp.restaurante.Registroentradasalida</class>
+    <class>com.erp.restaurante.Facturas</class>
+    <class>com.erp.restaurante.Pedido</class>
+    <class>com.erp.restaurante.Categoria</class>
+    <class>com.erp.restaurante.Producto</class>
+    <class>com.erp.restaurante.Cliente</class>
+    <class>com.erp.restaurante.Roles</class>
+    <class>com.erp.restaurante.Auditoria</class>
+    <class>com.erp.restaurante.Horariostrabajo</class>
+    <class>com.erp.restaurante.Recetas</class>
+    <class>com.erp.restaurante.DetallePedido</class>
+    <class>com.erp.restaurante.Sucursal</class>
+    <class>com.erp.restaurante.entity.Impuesto</class>
+    <class>com.erp.restaurante.entity.Horariostrabajo</class>
+    <class>com.erp.restaurante.entity.Ventas</class>
+    <class>com.erp.restaurante.entity.Ingredientes</class>
+    <class>com.erp.restaurante.entity.Vacaciones</class>
+    <class>com.erp.restaurante.entity.Auditoria</class>
+    <class>com.erp.restaurante.entity.Roles</class>
+    <class>com.erp.restaurante.entity.Producto</class>
+    <class>com.erp.restaurante.entity.Permisos</class>
+    <class>com.erp.restaurante.entity.Historialsalarios</class>
+    <class>com.erp.restaurante.entity.Cliente</class>
+    <class>com.erp.restaurante.entity.Categoria</class>
+    <class>com.erp.restaurante.entity.Empleado</class>
+    <class>com.erp.restaurante.entity.DetallePedido</class>
+    <class>com.erp.restaurante.entity.Recetas</class>
+    <class>com.erp.restaurante.entity.Sucursal</class>
+    <class>com.erp.restaurante.entity.Persona</class>
+    <class>com.erp.restaurante.entity.Usuarios</class>
+    <class>com.erp.restaurante.entity.Registroentradasalida</class>
+    <class>com.erp.restaurante.entity.Pedido</class>
+    <class>com.erp.restaurante.entity.FacturasImpuesto</class>
+    <class>com.erp.restaurante.entity.Descuento</class>
+    <class>com.erp.restaurante.entity.Facturas</class>
+    <class>com.erp.restaurante.entity.Bonos</class>
+    <class>com.erp.restaurante.entity.BonosEmpleados</class>
+    <class>com.erp.restaurante.entity.Contrato</class>
+    <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/ERPRestuaranteDB"/>
+      <property name="javax.persistence.jdbc.user" value="postgres"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="jose"/>
+    </properties>
+  </persistence-unit>
+</persistence>
