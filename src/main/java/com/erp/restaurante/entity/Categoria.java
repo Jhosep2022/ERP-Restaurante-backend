@@ -7,11 +7,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "categoria", catalog = "ERPRestuaranteDB", schema = "public")
-@NamedQueries({
-    @NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c"),
-    @NamedQuery(name = "Categoria.findById", query = "SELECT c FROM Categoria c WHERE c.id = :id"),
-    @NamedQuery(name = "Categoria.findByNombre", query = "SELECT c FROM Categoria c WHERE c.nombre = :nombre")})
+@Table(name = "categoria")
 public class Categoria implements Serializable {
 
     private static final long serialVersionUID = 1L;

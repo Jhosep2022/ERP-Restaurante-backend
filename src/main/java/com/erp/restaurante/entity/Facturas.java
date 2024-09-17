@@ -7,15 +7,7 @@ import java.util.Date;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "facturas", catalog = "ERPRestuaranteDB", schema = "public")
-@NamedQueries({
-    @NamedQuery(name = "Facturas.findAll", query = "SELECT f FROM Facturas f"),
-    @NamedQuery(name = "Facturas.findById", query = "SELECT f FROM Facturas f WHERE f.id = :id"),
-    @NamedQuery(name = "Facturas.findByFecha", query = "SELECT f FROM Facturas f WHERE f.fecha = :fecha"),
-    @NamedQuery(name = "Facturas.findByEstado", query = "SELECT f FROM Facturas f WHERE f.estado = :estado"),
-    @NamedQuery(name = "Facturas.findByTotal", query = "SELECT f FROM Facturas f WHERE f.total = :total"),
-    @NamedQuery(name = "Facturas.findByNumeroFactura", query = "SELECT f FROM Facturas f WHERE f.numeroFactura = :numeroFactura"),
-    @NamedQuery(name = "Facturas.findByCuf", query = "SELECT f FROM Facturas f WHERE f.cuf = :cuf")})
+@Table(name = "facturas")
 public class Facturas implements Serializable {
 
     private static final long serialVersionUID = 1L;

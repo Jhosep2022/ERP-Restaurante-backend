@@ -3,8 +3,8 @@ package com.erp.restaurante.entity;
 import java.io.Serializable;
 import jakarta.persistence.*;
 
-
-@Table(name = "bonos_empleados", catalog = "ERPRestuaranteDB", schema = "public")
+@Entity
+@Table(name = "bonos_empleados")
 
 public class BonosEmpleados implements Serializable {
 

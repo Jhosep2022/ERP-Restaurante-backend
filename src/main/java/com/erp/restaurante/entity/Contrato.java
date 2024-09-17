@@ -7,14 +7,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "contrato", catalog = "ERPRestuaranteDB", schema = "public")
-@NamedQueries({
-    @NamedQuery(name = "Contrato.findAll", query = "SELECT c FROM Contrato c"),
-    @NamedQuery(name = "Contrato.findById", query = "SELECT c FROM Contrato c WHERE c.id = :id"),
-    @NamedQuery(name = "Contrato.findByFechaInicio", query = "SELECT c FROM Contrato c WHERE c.fechaInicio = :fechaInicio"),
-    @NamedQuery(name = "Contrato.findByFechaConclusion", query = "SELECT c FROM Contrato c WHERE c.fechaConclusion = :fechaConclusion"),
-    @NamedQuery(name = "Contrato.findByFechaContrato", query = "SELECT c FROM Contrato c WHERE c.fechaContrato = :fechaContrato"),
-    @NamedQuery(name = "Contrato.findByIdentificador", query = "SELECT c FROM Contrato c WHERE c.identificador = :identificador")})
+@Table(name = "contrato")
 public class Contrato implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -7,14 +7,7 @@ import java.util.Date;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "descuento", catalog = "ERPRestuaranteDB", schema = "public")
-@NamedQueries({
-    @NamedQuery(name = "Descuento.findAll", query = "SELECT d FROM Descuento d"),
-    @NamedQuery(name = "Descuento.findById", query = "SELECT d FROM Descuento d WHERE d.id = :id"),
-    @NamedQuery(name = "Descuento.findByTipoDescuento", query = "SELECT d FROM Descuento d WHERE d.tipoDescuento = :tipoDescuento"),
-    @NamedQuery(name = "Descuento.findByMonto", query = "SELECT d FROM Descuento d WHERE d.monto = :monto"),
-    @NamedQuery(name = "Descuento.findByFecha", query = "SELECT d FROM Descuento d WHERE d.fecha = :fecha"),
-    @NamedQuery(name = "Descuento.findByJustificacion", query = "SELECT d FROM Descuento d WHERE d.justificacion = :justificacion")})
+@Table(name = "descuento")
 public class Descuento implements Serializable {
 
     private static final long serialVersionUID = 1L;

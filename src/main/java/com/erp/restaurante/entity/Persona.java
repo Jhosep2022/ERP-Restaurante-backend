@@ -6,16 +6,8 @@ import java.util.Date;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "persona", catalog = "ERPRestuaranteDB", schema = "public")
-@NamedQueries({
-    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
-    @NamedQuery(name = "Persona.findById", query = "SELECT p FROM Persona p WHERE p.id = :id"),
-    @NamedQuery(name = "Persona.findByNombre", query = "SELECT p FROM Persona p WHERE p.nombre = :nombre"),
-    @NamedQuery(name = "Persona.findByPrimerApellido", query = "SELECT p FROM Persona p WHERE p.primerApellido = :primerApellido"),
-    @NamedQuery(name = "Persona.findBySedundoApellido", query = "SELECT p FROM Persona p WHERE p.sedundoApellido = :sedundoApellido"),
-    @NamedQuery(name = "Persona.findByTelefono", query = "SELECT p FROM Persona p WHERE p.telefono = :telefono"),
-    @NamedQuery(name = "Persona.findByEdad", query = "SELECT p FROM Persona p WHERE p.edad = :edad"),
-    @NamedQuery(name = "Persona.findByDireccion", query = "SELECT p FROM Persona p WHERE p.direccion = :direccion")})
+@Table(name = "persona")
+
 public class Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;

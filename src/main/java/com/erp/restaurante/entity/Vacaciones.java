@@ -5,13 +5,8 @@ import java.util.Date;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "vacaciones", catalog = "ERPRestuaranteDB", schema = "public")
-@NamedQueries({
-    @NamedQuery(name = "Vacaciones.findAll", query = "SELECT v FROM Vacaciones v"),
-    @NamedQuery(name = "Vacaciones.findById", query = "SELECT v FROM Vacaciones v WHERE v.id = :id"),
-    @NamedQuery(name = "Vacaciones.findByFechaInicio", query = "SELECT v FROM Vacaciones v WHERE v.fechaInicio = :fechaInicio"),
-    @NamedQuery(name = "Vacaciones.findByFechaFin", query = "SELECT v FROM Vacaciones v WHERE v.fechaFin = :fechaFin"),
-    @NamedQuery(name = "Vacaciones.findByAprobacion", query = "SELECT v FROM Vacaciones v WHERE v.aprobacion = :aprobacion")})
+@Table(name = "vacaciones")
+
 public class Vacaciones implements Serializable {
 
     private static final long serialVersionUID = 1L;

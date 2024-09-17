@@ -4,11 +4,7 @@ import java.io.Serializable;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "recetas", catalog = "ERPRestuaranteDB", schema = "public")
-@NamedQueries({
-    @NamedQuery(name = "Recetas.findAll", query = "SELECT r FROM Recetas r"),
-    @NamedQuery(name = "Recetas.findById", query = "SELECT r FROM Recetas r WHERE r.id = :id"),
-    @NamedQuery(name = "Recetas.findByCantidadIngrediente", query = "SELECT r FROM Recetas r WHERE r.cantidadIngrediente = :cantidadIngrediente")})
+@Table(name = "recetas")
 public class Recetas implements Serializable {
 
     private static final long serialVersionUID = 1L;

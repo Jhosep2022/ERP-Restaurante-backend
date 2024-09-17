@@ -7,13 +7,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "detalle_pedido", catalog = "ERPRestuaranteDB", schema = "public")
-@NamedQueries({
-    @NamedQuery(name = "DetallePedido.findAll", query = "SELECT d FROM DetallePedido d"),
-    @NamedQuery(name = "DetallePedido.findById", query = "SELECT d FROM DetallePedido d WHERE d.id = :id"),
-    @NamedQuery(name = "DetallePedido.findByCantidad", query = "SELECT d FROM DetallePedido d WHERE d.cantidad = :cantidad"),
-    @NamedQuery(name = "DetallePedido.findByPrecioUnitario", query = "SELECT d FROM DetallePedido d WHERE d.precioUnitario = :precioUnitario"),
-    @NamedQuery(name = "DetallePedido.findBySubTotal", query = "SELECT d FROM DetallePedido d WHERE d.subTotal = :subTotal")})
+@Table(name = "detalle_pedido")
 public class DetallePedido implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -5,13 +5,7 @@ import java.util.Date;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "horariostrabajo", catalog = "ERPRestuaranteDB", schema = "public")
-@NamedQueries({
-    @NamedQuery(name = "Horariostrabajo.findAll", query = "SELECT h FROM Horariostrabajo h"),
-    @NamedQuery(name = "Horariostrabajo.findById", query = "SELECT h FROM Horariostrabajo h WHERE h.id = :id"),
-    @NamedQuery(name = "Horariostrabajo.findByDiaSemana", query = "SELECT h FROM Horariostrabajo h WHERE h.diaSemana = :diaSemana"),
-    @NamedQuery(name = "Horariostrabajo.findByHoraEntradaEsperada", query = "SELECT h FROM Horariostrabajo h WHERE h.horaEntradaEsperada = :horaEntradaEsperada"),
-    @NamedQuery(name = "Horariostrabajo.findByHoraSalidaEsperada", query = "SELECT h FROM Horariostrabajo h WHERE h.horaSalidaEsperada = :horaSalidaEsperada")})
+@Table(name = "horariostrabajo")
 public class Horariostrabajo implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -6,12 +6,8 @@ import java.util.Collection;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "impuesto", catalog = "ERPRestuaranteDB", schema = "public")
-@NamedQueries({
-    @NamedQuery(name = "Impuesto.findAll", query = "SELECT i FROM Impuesto i"),
-    @NamedQuery(name = "Impuesto.findById", query = "SELECT i FROM Impuesto i WHERE i.id = :id"),
-    @NamedQuery(name = "Impuesto.findByNombre", query = "SELECT i FROM Impuesto i WHERE i.nombre = :nombre"),
-    @NamedQuery(name = "Impuesto.findByPorcentaje", query = "SELECT i FROM Impuesto i WHERE i.porcentaje = :porcentaje")})
+@Table(name = "impuesto")
+
 public class Impuesto implements Serializable {
 
     private static final long serialVersionUID = 1L;

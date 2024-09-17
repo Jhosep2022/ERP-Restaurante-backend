@@ -5,12 +5,7 @@ import java.math.BigDecimal;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "historialsalarios", catalog = "ERPRestuaranteDB", schema = "public")
-@NamedQueries({
-    @NamedQuery(name = "Historialsalarios.findAll", query = "SELECT h FROM Historialsalarios h"),
-    @NamedQuery(name = "Historialsalarios.findById", query = "SELECT h FROM Historialsalarios h WHERE h.id = :id"),
-    @NamedQuery(name = "Historialsalarios.findBySalario", query = "SELECT h FROM Historialsalarios h WHERE h.salario = :salario"),
-    @NamedQuery(name = "Historialsalarios.findByFechapago", query = "SELECT h FROM Historialsalarios h WHERE h.fechapago = :fechapago")})
+@Table(name = "historialsalarios")
 public class Historialsalarios implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "bonos", catalog = "ERPRestuaranteDB", schema = "public")
+@Table(name = "bonos")
 
 public class Bonos implements Serializable {
 

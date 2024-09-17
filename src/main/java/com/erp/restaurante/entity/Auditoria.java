@@ -5,43 +5,43 @@ import java.util.Date;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "auditoria", catalog = "ERPRestuaranteDB", schema = "public")
-@NamedQueries({
-    @NamedQuery(name = "Auditoria.findAll", query = "SELECT a FROM Auditoria a"),
-    @NamedQuery(name = "Auditoria.findById", query = "SELECT a FROM Auditoria a WHERE a.id = :id"),
-    @NamedQuery(name = "Auditoria.findByTabla", query = "SELECT a FROM Auditoria a WHERE a.tabla = :tabla"),
-    @NamedQuery(name = "Auditoria.findByAccion", query = "SELECT a FROM Auditoria a WHERE a.accion = :accion"),
-    @NamedQuery(name = "Auditoria.findByFecfhaHora", query = "SELECT a FROM Auditoria a WHERE a.fecfhaHora = :fecfhaHora"),
-    @NamedQuery(name = "Auditoria.findByDetalle", query = "SELECT a FROM Auditoria a WHERE a.detalle = :detalle"),
-    @NamedQuery(name = "Auditoria.findByRegistroId", query = "SELECT a FROM Auditoria a WHERE a.registroId = :registroId")})
+@Table(name = "auditoria")
 public class Auditoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
     @Basic(optional = false)
     @Column(name = "tabla")
     private String tabla;
+
     @Basic(optional = false)
     @Column(name = "accion")
     private String accion;
+
     @Basic(optional = false)
     @Column(name = "fecfha_hora")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecfhaHora;
+
     @Basic(optional = false)
     @Lob
     @Column(name = "cambios")
-    private Object cambios;
+    private String cambios; // Cambiado de Object a String
+
     @Basic(optional = false)
     @Column(name = "detalle")
     private String detalle;
+
     @Basic(optional = false)
     @Column(name = "registro_id")
     private int registroId;
+
     @JoinColumn(name = "usuarios_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
     private Usuarios usuariosId;
@@ -49,11 +49,7 @@ public class Auditoria implements Serializable {
     public Auditoria() {
     }
 
-    public Auditoria(Integer id) {
-        this.id = id;
-    }
-
-    public Auditoria(Integer id, String tabla, String accion, Date fecfhaHora, Object cambios, String detalle, int registroId) {
+    public Auditoria(Integer id, String tabla, String accion, Date fecfhaHora, String cambios, String detalle, int registroId) {
         this.id = id;
         this.tabla = tabla;
         this.accion = accion;
@@ -63,6 +59,7 @@ public class Auditoria implements Serializable {
         this.registroId = registroId;
     }
 
+    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -95,11 +92,11 @@ public class Auditoria implements Serializable {
         this.fecfhaHora = fecfhaHora;
     }
 
-    public Object getCambios() {
+    public String getCambios() {
         return cambios;
     }
 
-    public void setCambios(Object cambios) {
+    public void setCambios(String cambios) {
         this.cambios = cambios;
     }
 
@@ -136,20 +133,15 @@ public class Auditoria implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Auditoria)) {
             return false;
         }
         Auditoria other = (Auditoria) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override
     public String toString() {
         return "com.erp.restaurante.entity.Auditoria[ id=" + id + " ]";
     }
-    
 }

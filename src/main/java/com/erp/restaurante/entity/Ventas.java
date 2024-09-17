@@ -7,12 +7,8 @@ import jakarta.persistence.*;
 
 
 @Entity
-@Table(name = "ventas", catalog = "ERPRestuaranteDB", schema = "public")
-@NamedQueries({
-    @NamedQuery(name = "Ventas.findAll", query = "SELECT v FROM Ventas v"),
-    @NamedQuery(name = "Ventas.findById", query = "SELECT v FROM Ventas v WHERE v.id = :id"),
-    @NamedQuery(name = "Ventas.findByCantidad", query = "SELECT v FROM Ventas v WHERE v.cantidad = :cantidad"),
-    @NamedQuery(name = "Ventas.findByFecha", query = "SELECT v FROM Ventas v WHERE v.fecha = :fecha")})
+@Table(name = "ventas")
+
 public class Ventas implements Serializable {
 
     private static final long serialVersionUID = 1L;

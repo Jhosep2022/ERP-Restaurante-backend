@@ -5,14 +5,8 @@ import java.util.Collection;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "usuarios", catalog = "ERPRestuaranteDB", schema = "public")
-@NamedQueries({
-    @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u"),
-    @NamedQuery(name = "Usuarios.findById", query = "SELECT u FROM Usuarios u WHERE u.id = :id"),
-    @NamedQuery(name = "Usuarios.findByNombre", query = "SELECT u FROM Usuarios u WHERE u.nombre = :nombre"),
-    @NamedQuery(name = "Usuarios.findByCorreo", query = "SELECT u FROM Usuarios u WHERE u.correo = :correo"),
-    @NamedQuery(name = "Usuarios.findByPassword", query = "SELECT u FROM Usuarios u WHERE u.password = :password"),
-    @NamedQuery(name = "Usuarios.findByEstado", query = "SELECT u FROM Usuarios u WHERE u.estado = :estado")})
+@Table(name = "usuarios")
+
 public class Usuarios implements Serializable {
 
     private static final long serialVersionUID = 1L;
