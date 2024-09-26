@@ -1,11 +1,20 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import java.util.Date;
 import jakarta.persistence.*;
-
 @Entity
 @Table(name = "horariostrabajo")
+@NamedQueries({
+    @NamedQuery(name = "Horariostrabajo.findAll", query = "SELECT h FROM Horariostrabajo h"),
+    @NamedQuery(name = "Horariostrabajo.findById", query = "SELECT h FROM Horariostrabajo h WHERE h.id = :id"),
+    @NamedQuery(name = "Horariostrabajo.findByDiaSemana", query = "SELECT h FROM Horariostrabajo h WHERE h.diaSemana = :diaSemana"),
+    @NamedQuery(name = "Horariostrabajo.findByHoraEntradaEsperada", query = "SELECT h FROM Horariostrabajo h WHERE h.horaEntradaEsperada = :horaEntradaEsperada"),
+    @NamedQuery(name = "Horariostrabajo.findByHoraSalidaEsperada", query = "SELECT h FROM Horariostrabajo h WHERE h.horaSalidaEsperada = :horaSalidaEsperada")})
 public class Horariostrabajo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,9 +34,9 @@ public class Horariostrabajo implements Serializable {
     @Column(name = "hora_salida_esperada")
     @Temporal(TemporalType.TIME)
     private Date horaSalidaEsperada;
-    @JoinColumn(name = "empleado_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Empleado empleadoId;
+    @JoinColumn(name = "usuarios_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Usuarios usuariosId;
 
     public Horariostrabajo() {
     }
@@ -75,12 +84,12 @@ public class Horariostrabajo implements Serializable {
         this.horaSalidaEsperada = horaSalidaEsperada;
     }
 
-    public Empleado getEmpleadoId() {
-        return empleadoId;
+    public Usuarios getUsuariosId() {
+        return usuariosId;
     }
 
-    public void setEmpleadoId(Empleado empleadoId) {
-        this.empleadoId = empleadoId;
+    public void setUsuariosId(Usuarios usuariosId) {
+        this.usuariosId = usuariosId;
     }
 
     @Override

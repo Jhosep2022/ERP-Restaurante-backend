@@ -1,35 +1,44 @@
 package com.erp.restaurante.dto;
 
+import java.util.Date;
+
 public class UsuariosDto {
 
     private Integer id;
+    private String empCode; // Nuevo campo empCode
     private String nombre;
+    private String primerApellido;
+    private String segundoApellido;
     private String correo;
     private String password;
+    private Date fechaIngreso;
     private boolean estado;
-    private Integer empleadoId;
-    private Integer personaId;
+    private String direccion;
+    private Date edad;
+    private String telefono;
     private Integer rolesId;
     private Integer sucursalId;
 
-    // Constructor vacío
     public UsuariosDto() {
     }
 
-    // Constructor con parámetros
-    public UsuariosDto(Integer id, String nombre, String correo, String password, boolean estado, Integer empleadoId, Integer personaId, Integer rolesId, Integer sucursalId) {
+    public UsuariosDto(Integer id, String empCode, String nombre, String primerApellido, String segundoApellido, String correo, String password, Date fechaIngreso, boolean estado, String direccion, Date edad, String telefono, Integer rolesId, Integer sucursalId) {
         this.id = id;
+        this.empCode = empCode; // Asignar empCode en el constructor
         this.nombre = nombre;
+        this.primerApellido = primerApellido;
+        this.segundoApellido = segundoApellido;
         this.correo = correo;
         this.password = password;
+        this.fechaIngreso = fechaIngreso;
         this.estado = estado;
-        this.empleadoId = empleadoId;
-        this.personaId = personaId;
+        this.direccion = direccion;
+        this.edad = edad;
+        this.telefono = telefono;
         this.rolesId = rolesId;
         this.sucursalId = sucursalId;
     }
 
-    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -38,12 +47,36 @@ public class UsuariosDto {
         this.id = id;
     }
 
+    public String getEmpCode() {
+        return empCode; // Getter para empCode
+    }
+
+    public void setEmpCode(String empCode) {
+        this.empCode = empCode; // Setter para empCode
+    }
+
     public String getNombre() {
         return nombre;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String getPrimerApellido() {
+        return primerApellido;
+    }
+
+    public void setPrimerApellido(String primerApellido) {
+        this.primerApellido = primerApellido;
+    }
+
+    public String getSegundoApellido() {
+        return segundoApellido;
+    }
+
+    public void setSegundoApellido(String segundoApellido) {
+        this.segundoApellido = segundoApellido;
     }
 
     public String getCorreo() {
@@ -62,6 +95,14 @@ public class UsuariosDto {
         this.password = password;
     }
 
+    public Date getFechaIngreso() {
+        return fechaIngreso;
+    }
+
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
+    }
+
     public boolean isEstado() {
         return estado;
     }
@@ -70,20 +111,28 @@ public class UsuariosDto {
         this.estado = estado;
     }
 
-    public Integer getEmpleadoId() {
-        return empleadoId;
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setEmpleadoId(Integer empleadoId) {
-        this.empleadoId = empleadoId;
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
-    public Integer getPersonaId() {
-        return personaId;
+    public Date getEdad() {
+        return edad;
     }
 
-    public void setPersonaId(Integer personaId) {
-        this.personaId = personaId;
+    public void setEdad(Date edad) {
+        this.edad = edad;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public Integer getRolesId() {

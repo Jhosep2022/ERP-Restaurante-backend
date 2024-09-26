@@ -1,11 +1,16 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
-
 @Entity
 @Table(name = "bonos_empleados")
-
+@NamedQueries({
+    @NamedQuery(name = "BonosEmpleados.findAll", query = "SELECT b FROM BonosEmpleados b"),
+    @NamedQuery(name = "BonosEmpleados.findById", query = "SELECT b FROM BonosEmpleados b WHERE b.id = :id")})
 public class BonosEmpleados implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -14,11 +19,11 @@ public class BonosEmpleados implements Serializable {
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name = "bonos_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Bonos bonosId;
-    @JoinColumn(name = "empleado_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Empleado empleadoId;
+    @JoinColumn(name = "usuarios_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Usuarios usuariosId;
 
     public BonosEmpleados() {
     }
@@ -43,12 +48,12 @@ public class BonosEmpleados implements Serializable {
         this.bonosId = bonosId;
     }
 
-    public Empleado getEmpleadoId() {
-        return empleadoId;
+    public Usuarios getUsuariosId() {
+        return usuariosId;
     }
 
-    public void setEmpleadoId(Empleado empleadoId) {
-        this.empleadoId = empleadoId;
+    public void setUsuariosId(Usuarios usuariosId) {
+        this.usuariosId = usuariosId;
     }
 
     @Override

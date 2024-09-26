@@ -1,6 +1,5 @@
 package com.erp.restaurante.config;
 
-
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -20,7 +19,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        basePackages = "com.erp.restaurante.repository", // Cambia al paquete de tus repositorios
+        basePackages = "com.erp.restaurante.repository", // Paquete de tus repositorios del restaurante
         entityManagerFactoryRef = "restaurantEntityManagerFactory",
         transactionManagerRef = "restaurantTransactionManager"
 )
@@ -40,7 +39,7 @@ public class RestaurantDbConfig {
             @Qualifier("restaurantDataSource") DataSource dataSource) {
         return builder
                 .dataSource(dataSource)
-                .packages("com.erp.restaurante.entity") // Cambia al paquete de tus entidades
+                .packages("com.erp.restaurante.entity") // Paquete de tus entidades del restaurante
                 .persistenceUnit("restaurant")
                 .build();
     }
@@ -52,7 +51,3 @@ public class RestaurantDbConfig {
         return new JpaTransactionManager(restaurantEntityManagerFactory);
     }
 }
-
-
-
-

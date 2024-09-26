@@ -1,6 +1,5 @@
 package com.erp.zkteco.config;
 
-
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -48,7 +47,3 @@ public class ZktecoDbConfig {
         return new JpaTransactionManager(zktecoEntityManagerFactory);
     }
 }
-
-
-
-

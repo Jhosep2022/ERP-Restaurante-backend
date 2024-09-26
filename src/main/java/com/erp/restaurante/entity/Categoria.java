@@ -2,12 +2,14 @@ package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
-
 import jakarta.persistence.*;
-
 
 @Entity
 @Table(name = "categoria")
+@NamedQueries({
+    @NamedQuery(name = "Categoria.findAll", query = "SELECT c FROM Categoria c"),
+    @NamedQuery(name = "Categoria.findById", query = "SELECT c FROM Categoria c WHERE c.id = :id"),
+    @NamedQuery(name = "Categoria.findByNombre", query = "SELECT c FROM Categoria c WHERE c.nombre = :nombre")})
 public class Categoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -19,7 +21,7 @@ public class Categoria implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoriaId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoriaId", fetch = FetchType.LAZY)
     private Collection<Producto> productoCollection;
 
     public Categoria() {

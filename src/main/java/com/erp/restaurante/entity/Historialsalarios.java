@@ -1,9 +1,12 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import jakarta.persistence.*;
-
 @Entity
 @Table(name = "historialsalarios")
 public class Historialsalarios implements Serializable {
@@ -21,11 +24,11 @@ public class Historialsalarios implements Serializable {
     @Column(name = "fechapago")
     private int fechapago;
     @JoinColumn(name = "descuento_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Descuento descuentoId;
-    @JoinColumn(name = "empleado_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Empleado empleadoId;
+    @JoinColumn(name = "usuarios_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Usuarios usuariosId;
 
     public Historialsalarios() {
     }
@@ -72,12 +75,12 @@ public class Historialsalarios implements Serializable {
         this.descuentoId = descuentoId;
     }
 
-    public Empleado getEmpleadoId() {
-        return empleadoId;
+    public Usuarios getUsuariosId() {
+        return usuariosId;
     }
 
-    public void setEmpleadoId(Empleado empleadoId) {
-        this.empleadoId = empleadoId;
+    public void setUsuariosId(Usuarios usuariosId) {
+        this.usuariosId = usuariosId;
     }
 
     @Override

@@ -9,21 +9,20 @@ public class ContratoDto {
     private Date fechaConclusion;
     private Date fechaContrato;
     private int identificador;
+    private Integer usuariosId;
 
-    // Constructor vacío
     public ContratoDto() {
     }
 
-    // Constructor con parámetros
-    public ContratoDto(Integer id, Date fechaInicio, Date fechaConclusion, Date fechaContrato, int identificador) {
+    public ContratoDto(Integer id, Date fechaInicio, Date fechaConclusion, Date fechaContrato, int identificador, Integer usuariosId) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaConclusion = fechaConclusion;
         this.fechaContrato = fechaContrato;
         this.identificador = identificador;
+        this.usuariosId = usuariosId;
     }
 
-    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -62,5 +61,13 @@ public class ContratoDto {
 
     public void setIdentificador(int identificador) {
         this.identificador = identificador;
+    }
+
+    public Integer getUsuariosId() {
+        return usuariosId;
+    }
+
+    public void setUsuariosId(Integer usuariosId) {
+        this.usuariosId = usuariosId;
     }
 }

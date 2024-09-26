@@ -4,20 +4,17 @@ public class BonosEmpleadosDto {
 
     private Integer id;
     private Integer bonosId;
-    private Integer empleadoId;
+    private Integer usuariosId;
 
-    // Constructor vacío
     public BonosEmpleadosDto() {
     }
 
-    // Constructor con parámetros
-    public BonosEmpleadosDto(Integer id, Integer bonosId, Integer empleadoId) {
+    public BonosEmpleadosDto(Integer id, Integer bonosId, Integer usuariosId) {
         this.id = id;
         this.bonosId = bonosId;
-        this.empleadoId = empleadoId;
+        this.usuariosId = usuariosId;
     }
 
-    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -34,11 +31,11 @@ public class BonosEmpleadosDto {
         this.bonosId = bonosId;
     }
 
-    public Integer getEmpleadoId() {
-        return empleadoId;
+    public Integer getUsuariosId() {
+        return usuariosId;
     }
 
-    public void setEmpleadoId(Integer empleadoId) {
-        this.empleadoId = empleadoId;
+    public void setUsuariosId(Integer usuariosId) {
+        this.usuariosId = usuariosId;
     }
 }

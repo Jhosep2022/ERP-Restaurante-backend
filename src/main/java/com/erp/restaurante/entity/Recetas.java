@@ -1,10 +1,17 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import jakarta.persistence.*;
-
 @Entity
 @Table(name = "recetas")
+@NamedQueries({
+    @NamedQuery(name = "Recetas.findAll", query = "SELECT r FROM Recetas r"),
+    @NamedQuery(name = "Recetas.findById", query = "SELECT r FROM Recetas r WHERE r.id = :id"),
+    @NamedQuery(name = "Recetas.findByCantidadIngrediente", query = "SELECT r FROM Recetas r WHERE r.cantidadIngrediente = :cantidadIngrediente")})
 public class Recetas implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -17,10 +24,10 @@ public class Recetas implements Serializable {
     @Column(name = "cantidad_ingrediente")
     private int cantidadIngrediente;
     @JoinColumn(name = "ingredientes_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Ingredientes ingredientesId;
     @JoinColumn(name = "producto_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Producto productoId;
 
     public Recetas() {

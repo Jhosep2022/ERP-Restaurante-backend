@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
@@ -5,9 +9,15 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
 import jakarta.persistence.*;
-
 @Entity
 @Table(name = "descuento")
+@NamedQueries({
+    @NamedQuery(name = "Descuento.findAll", query = "SELECT d FROM Descuento d"),
+    @NamedQuery(name = "Descuento.findById", query = "SELECT d FROM Descuento d WHERE d.id = :id"),
+    @NamedQuery(name = "Descuento.findByTipoDescuento", query = "SELECT d FROM Descuento d WHERE d.tipoDescuento = :tipoDescuento"),
+    @NamedQuery(name = "Descuento.findByMonto", query = "SELECT d FROM Descuento d WHERE d.monto = :monto"),
+    @NamedQuery(name = "Descuento.findByFecha", query = "SELECT d FROM Descuento d WHERE d.fecha = :fecha"),
+    @NamedQuery(name = "Descuento.findByJustificacion", query = "SELECT d FROM Descuento d WHERE d.justificacion = :justificacion")})
 public class Descuento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,11 +40,8 @@ public class Descuento implements Serializable {
     @Basic(optional = false)
     @Column(name = "justificacion")
     private String justificacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "descuentoId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "descuentoId", fetch = FetchType.LAZY)
     private Collection<Historialsalarios> historialsalariosCollection;
-    @JoinColumn(name = "empleado_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Empleado empleadoId;
 
     public Descuento() {
     }
@@ -97,14 +104,6 @@ public class Descuento implements Serializable {
 
     public void setHistorialsalariosCollection(Collection<Historialsalarios> historialsalariosCollection) {
         this.historialsalariosCollection = historialsalariosCollection;
-    }
-
-    public Empleado getEmpleadoId() {
-        return empleadoId;
-    }
-
-    public void setEmpleadoId(Empleado empleadoId) {
-        this.empleadoId = empleadoId;
     }
 
     @Override

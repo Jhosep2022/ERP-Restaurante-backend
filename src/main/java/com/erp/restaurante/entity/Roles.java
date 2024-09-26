@@ -1,12 +1,14 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
 import jakarta.persistence.*;
-
 @Entity
 @Table(name = "roles")
-
 public class Roles implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -18,9 +20,9 @@ public class Roles implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
-    @ManyToMany(mappedBy = "rolesCollection")
+    @ManyToMany(mappedBy = "rolesCollection", fetch = FetchType.LAZY)
     private Collection<Permisos> permisosCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rolesId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rolesId", fetch = FetchType.LAZY)
     private Collection<Usuarios> usuariosCollection;
 
     public Roles() {

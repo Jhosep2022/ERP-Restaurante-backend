@@ -8,22 +8,19 @@ public class VacacionesDto {
     private Date fechaInicio;
     private Date fechaFin;
     private boolean aprobacion;
-    private Integer empleadoId;
+    private Integer usuariosId;
 
-    // Constructor vacío
     public VacacionesDto() {
     }
 
-    // Constructor con parámetros
-    public VacacionesDto(Integer id, Date fechaInicio, Date fechaFin, boolean aprobacion, Integer empleadoId) {
+    public VacacionesDto(Integer id, Date fechaInicio, Date fechaFin, boolean aprobacion, Integer usuariosId) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.aprobacion = aprobacion;
-        this.empleadoId = empleadoId;
+        this.usuariosId = usuariosId;
     }
 
-    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -56,11 +53,11 @@ public class VacacionesDto {
         this.aprobacion = aprobacion;
     }
 
-    public Integer getEmpleadoId() {
-        return empleadoId;
+    public Integer getUsuariosId() {
+        return usuariosId;
     }
 
-    public void setEmpleadoId(Integer empleadoId) {
-        this.empleadoId = empleadoId;
+    public void setUsuariosId(Integer usuariosId) {
+        this.usuariosId = usuariosId;
     }
 }

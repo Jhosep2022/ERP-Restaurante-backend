@@ -1,9 +1,12 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import java.util.Date;
 import jakarta.persistence.*;
-
 @Entity
 @Table(name = "registroentradasalida")
 public class Registroentradasalida implements Serializable {
@@ -29,9 +32,9 @@ public class Registroentradasalida implements Serializable {
     @Basic(optional = false)
     @Column(name = "retraso")
     private boolean retraso;
-    @JoinColumn(name = "empleados_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Empleado empleadosId;
+    @JoinColumn(name = "usuarios_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Usuarios usuariosId;
 
     public Registroentradasalida() {
     }
@@ -88,12 +91,12 @@ public class Registroentradasalida implements Serializable {
         this.retraso = retraso;
     }
 
-    public Empleado getEmpleadosId() {
-        return empleadosId;
+    public Usuarios getUsuariosId() {
+        return usuariosId;
     }
 
-    public void setEmpleadosId(Empleado empleadosId) {
-        this.empleadosId = empleadosId;
+    public void setUsuariosId(Usuarios usuariosId) {
+        this.usuariosId = usuariosId;
     }
 
     @Override

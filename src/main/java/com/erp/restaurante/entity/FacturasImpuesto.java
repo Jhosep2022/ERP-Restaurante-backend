@@ -1,11 +1,18 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import jakarta.persistence.*;
-
 @Entity
 @Table(name = "facturas_impuesto")
+@NamedQueries({
+    @NamedQuery(name = "FacturasImpuesto.findAll", query = "SELECT f FROM FacturasImpuesto f"),
+    @NamedQuery(name = "FacturasImpuesto.findById", query = "SELECT f FROM FacturasImpuesto f WHERE f.id = :id"),
+    @NamedQuery(name = "FacturasImpuesto.findByMonto", query = "SELECT f FROM FacturasImpuesto f WHERE f.monto = :monto")})
 public class FacturasImpuesto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -19,10 +26,10 @@ public class FacturasImpuesto implements Serializable {
     @Column(name = "monto")
     private BigDecimal monto;
     @JoinColumn(name = "facturas_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Facturas facturasId;
     @JoinColumn(name = "impuesto_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Impuesto impuestoId;
 
     public FacturasImpuesto() {

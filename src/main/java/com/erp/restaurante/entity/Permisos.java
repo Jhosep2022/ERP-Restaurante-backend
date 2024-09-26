@@ -1,12 +1,18 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
 import jakarta.persistence.*;
-
 @Entity
 @Table(name = "permisos")
-
+@NamedQueries({
+    @NamedQuery(name = "Permisos.findAll", query = "SELECT p FROM Permisos p"),
+    @NamedQuery(name = "Permisos.findById", query = "SELECT p FROM Permisos p WHERE p.id = :id"),
+    @NamedQuery(name = "Permisos.findByNombre", query = "SELECT p FROM Permisos p WHERE p.nombre = :nombre")})
 public class Permisos implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -21,7 +27,7 @@ public class Permisos implements Serializable {
     @JoinTable(name = "permisos_rol", joinColumns = {
         @JoinColumn(name = "permisos_id", referencedColumnName = "id")}, inverseJoinColumns = {
         @JoinColumn(name = "roles_id", referencedColumnName = "id")})
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.LAZY)
     private Collection<Roles> rolesCollection;
 
     public Permisos() {

@@ -1,13 +1,20 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 import jakarta.persistence.*;
-
 @Entity
 @Table(name = "impuesto")
-
+@NamedQueries({
+    @NamedQuery(name = "Impuesto.findAll", query = "SELECT i FROM Impuesto i"),
+    @NamedQuery(name = "Impuesto.findById", query = "SELECT i FROM Impuesto i WHERE i.id = :id"),
+    @NamedQuery(name = "Impuesto.findByNombre", query = "SELECT i FROM Impuesto i WHERE i.nombre = :nombre"),
+    @NamedQuery(name = "Impuesto.findByPorcentaje", query = "SELECT i FROM Impuesto i WHERE i.porcentaje = :porcentaje")})
 public class Impuesto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,7 +29,7 @@ public class Impuesto implements Serializable {
     @Basic(optional = false)
     @Column(name = "porcentaje")
     private BigDecimal porcentaje;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "impuestoId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "impuestoId", fetch = FetchType.LAZY)
     private Collection<FacturasImpuesto> facturasImpuestoCollection;
 
     public Impuesto() {

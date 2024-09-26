@@ -4,9 +4,14 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 import jakarta.persistence.*;
-
 @Entity
 @Table(name = "producto")
+@NamedQueries({
+    @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p"),
+    @NamedQuery(name = "Producto.findById", query = "SELECT p FROM Producto p WHERE p.id = :id"),
+    @NamedQuery(name = "Producto.findByNombre", query = "SELECT p FROM Producto p WHERE p.nombre = :nombre"),
+    @NamedQuery(name = "Producto.findByDescripcion", query = "SELECT p FROM Producto p WHERE p.descripcion = :descripcion"),
+    @NamedQuery(name = "Producto.findByPrecio", query = "SELECT p FROM Producto p WHERE p.precio = :precio")})
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,14 +31,14 @@ public class Producto implements Serializable {
     @Column(name = "precio")
     private BigDecimal precio;
     @JoinColumn(name = "categoria_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Categoria categoriaId;
     @JoinColumn(name = "sucursal_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Sucursal sucursalId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoId", fetch = FetchType.LAZY)
     private Collection<Recetas> recetasCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "productoId", fetch = FetchType.LAZY)
     private Collection<Ventas> ventasCollection;
 
     public Producto() {

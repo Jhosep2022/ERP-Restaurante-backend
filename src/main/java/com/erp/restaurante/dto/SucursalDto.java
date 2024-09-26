@@ -1,26 +1,19 @@
 package com.erp.restaurante.dto;
 
-import java.math.BigDecimal;
-
 public class SucursalDto {
 
     private Integer id;
     private String nombre;
     private String direccion;
-    private BigDecimal precio;
-    private int cantidad;
 
     // Constructor vacío
-    public SucursalDto() {
-    }
+    public SucursalDto() {}
 
     // Constructor con parámetros
-    public SucursalDto(Integer id, String nombre, String direccion, BigDecimal precio, int cantidad) {
+    public SucursalDto(Integer id, String nombre, String direccion) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
-        this.precio = precio;
-        this.cantidad = cantidad;
     }
 
     // Getters y Setters
@@ -46,21 +39,5 @@ public class SucursalDto {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-
-    public BigDecimal getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(BigDecimal precio) {
-        this.precio = precio;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
     }
 }

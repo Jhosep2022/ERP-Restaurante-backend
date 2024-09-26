@@ -1,11 +1,20 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
 import jakarta.persistence.*;
-
 @Entity
 @Table(name = "ingredientes")
+@NamedQueries({
+    @NamedQuery(name = "Ingredientes.findAll", query = "SELECT i FROM Ingredientes i"),
+    @NamedQuery(name = "Ingredientes.findById", query = "SELECT i FROM Ingredientes i WHERE i.id = :id"),
+    @NamedQuery(name = "Ingredientes.findByNombreIngrediente", query = "SELECT i FROM Ingredientes i WHERE i.nombreIngrediente = :nombreIngrediente"),
+    @NamedQuery(name = "Ingredientes.findByDescripcion", query = "SELECT i FROM Ingredientes i WHERE i.descripcion = :descripcion"),
+    @NamedQuery(name = "Ingredientes.findByStockActual", query = "SELECT i FROM Ingredientes i WHERE i.stockActual = :stockActual")})
 public class Ingredientes implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -23,7 +32,7 @@ public class Ingredientes implements Serializable {
     @Basic(optional = false)
     @Column(name = "stock_actual")
     private int stockActual;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredientesId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ingredientesId", fetch = FetchType.LAZY)
     private Collection<Recetas> recetasCollection;
 
     public Ingredientes() {

@@ -1,7 +1,6 @@
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Collection;
 import jakarta.persistence.*;
 
@@ -10,44 +9,36 @@ import jakarta.persistence.*;
 public class Sucursal implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "id")
     private Integer id;
+
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
+
     @Basic(optional = false)
     @Column(name = "direccion")
     private String direccion;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Basic(optional = false)
-    @Column(name = "precio")
-    private BigDecimal precio;
-    @Basic(optional = false)
-    @Column(name = "cantidad")
-    private int cantidad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursalId")
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursalId", fetch = FetchType.LAZY)
     private Collection<Producto> productoCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursalId")
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursalId", fetch = FetchType.LAZY)
     private Collection<Usuarios> usuariosCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursalId")
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursalId", fetch = FetchType.LAZY)
     private Collection<Ventas> ventasCollection;
 
-    public Sucursal() {
-    }
+    public Sucursal() {}
 
-    public Sucursal(Integer id) {
-        this.id = id;
-    }
-
-    public Sucursal(Integer id, String nombre, String direccion, BigDecimal precio, int cantidad) {
+    public Sucursal(Integer id, String nombre, String direccion) {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
-        this.precio = precio;
-        this.cantidad = cantidad;
     }
 
     public Integer getId() {
@@ -72,22 +63,6 @@ public class Sucursal implements Serializable {
 
     public void setDireccion(String direccion) {
         this.direccion = direccion;
-    }
-
-    public BigDecimal getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(BigDecimal precio) {
-        this.precio = precio;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
     }
 
     public Collection<Producto> getProductoCollection() {
@@ -123,20 +98,15 @@ public class Sucursal implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Sucursal)) {
             return false;
         }
         Sucursal other = (Sucursal) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return (this.id != null || other.id == null) && (this.id == null || this.id.equals(other.id));
     }
 
     @Override
     public String toString() {
         return "com.erp.restaurante.entity.Sucursal[ id=" + id + " ]";
     }
-    
 }

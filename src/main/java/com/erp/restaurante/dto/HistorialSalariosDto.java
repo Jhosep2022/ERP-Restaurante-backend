@@ -8,22 +8,19 @@ public class HistorialSalariosDto {
     private BigDecimal salario;
     private int fechapago;
     private Integer descuentoId;
-    private Integer empleadoId;
+    private Integer usuariosId;
 
-    // Constructor vacío
     public HistorialSalariosDto() {
     }
 
-    // Constructor con parámetros
-    public HistorialSalariosDto(Integer id, BigDecimal salario, int fechapago, Integer descuentoId, Integer empleadoId) {
+    public HistorialSalariosDto(Integer id, BigDecimal salario, int fechapago, Integer descuentoId, Integer usuariosId) {
         this.id = id;
         this.salario = salario;
         this.fechapago = fechapago;
         this.descuentoId = descuentoId;
-        this.empleadoId = empleadoId;
+        this.usuariosId = usuariosId;
     }
 
-    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -56,11 +53,11 @@ public class HistorialSalariosDto {
         this.descuentoId = descuentoId;
     }
 
-    public Integer getEmpleadoId() {
-        return empleadoId;
+    public Integer getUsuariosId() {
+        return usuariosId;
     }
 
-    public void setEmpleadoId(Integer empleadoId) {
-        this.empleadoId = empleadoId;
+    public void setUsuariosId(Integer usuariosId) {
+        this.usuariosId = usuariosId;
     }
 }

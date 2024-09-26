@@ -1,13 +1,21 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 import jakarta.persistence.*;
-
-
 @Entity
 @Table(name = "detalle_pedido")
+@NamedQueries({
+    @NamedQuery(name = "DetallePedido.findAll", query = "SELECT d FROM DetallePedido d"),
+    @NamedQuery(name = "DetallePedido.findById", query = "SELECT d FROM DetallePedido d WHERE d.id = :id"),
+    @NamedQuery(name = "DetallePedido.findByCantidad", query = "SELECT d FROM DetallePedido d WHERE d.cantidad = :cantidad"),
+    @NamedQuery(name = "DetallePedido.findByPrecioUnitario", query = "SELECT d FROM DetallePedido d WHERE d.precioUnitario = :precioUnitario"),
+    @NamedQuery(name = "DetallePedido.findBySubTotal", query = "SELECT d FROM DetallePedido d WHERE d.subTotal = :subTotal")})
 public class DetallePedido implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -26,13 +34,13 @@ public class DetallePedido implements Serializable {
     @Basic(optional = false)
     @Column(name = "sub_total")
     private BigDecimal subTotal;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "detallePedidoId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "detallePedidoId", fetch = FetchType.LAZY)
     private Collection<Facturas> facturasCollection;
     @JoinColumn(name = "pedido_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Pedido pedidoId;
     @JoinColumn(name = "ventas_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Ventas ventasId;
 
     public DetallePedido() {

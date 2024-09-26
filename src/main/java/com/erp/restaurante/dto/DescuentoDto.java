@@ -10,23 +10,18 @@ public class DescuentoDto {
     private BigDecimal monto;
     private Date fecha;
     private String justificacion;
-    private Integer empleadoId;
 
-    // Constructor vacío
     public DescuentoDto() {
     }
 
-    // Constructor con parámetros
-    public DescuentoDto(Integer id, String tipoDescuento, BigDecimal monto, Date fecha, String justificacion, Integer empleadoId) {
+    public DescuentoDto(Integer id, String tipoDescuento, BigDecimal monto, Date fecha, String justificacion) {
         this.id = id;
         this.tipoDescuento = tipoDescuento;
         this.monto = monto;
         this.fecha = fecha;
         this.justificacion = justificacion;
-        this.empleadoId = empleadoId;
     }
 
-    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -65,13 +60,5 @@ public class DescuentoDto {
 
     public void setJustificacion(String justificacion) {
         this.justificacion = justificacion;
-    }
-
-    public Integer getEmpleadoId() {
-        return empleadoId;
-    }
-
-    public void setEmpleadoId(Integer empleadoId) {
-        this.empleadoId = empleadoId;
     }
 }

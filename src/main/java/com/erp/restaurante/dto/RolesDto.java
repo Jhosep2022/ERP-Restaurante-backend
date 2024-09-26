@@ -5,17 +5,14 @@ public class RolesDto {
     private Integer id;
     private String nombre;
 
-    // Constructor vacío
     public RolesDto() {
     }
 
-    // Constructor con parámetros
     public RolesDto(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
-    // Getters y Setters
     public Integer getId() {
         return id;
     }

@@ -1,14 +1,20 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
 import jakarta.persistence.*;
-
-
 @Entity
 @Table(name = "bonos")
-
+@NamedQueries({
+    @NamedQuery(name = "Bonos.findAll", query = "SELECT b FROM Bonos b"),
+    @NamedQuery(name = "Bonos.findById", query = "SELECT b FROM Bonos b WHERE b.id = :id"),
+    @NamedQuery(name = "Bonos.findByNombre", query = "SELECT b FROM Bonos b WHERE b.nombre = :nombre"),
+    @NamedQuery(name = "Bonos.findByMonto", query = "SELECT b FROM Bonos b WHERE b.monto = :monto")})
 public class Bonos implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -19,10 +25,11 @@ public class Bonos implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre")
     private String nombre;
+    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
     @Column(name = "monto")
     private BigDecimal monto;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bonosId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "bonosId", fetch = FetchType.LAZY)
     private Collection<BonosEmpleados> bonosEmpleadosCollection;
 
     public Bonos() {

@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
@@ -5,10 +9,14 @@ import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Date;
 import jakarta.persistence.*;
-
 @Entity
 @Table(name = "pedido")
-
+@NamedQueries({
+    @NamedQuery(name = "Pedido.findAll", query = "SELECT p FROM Pedido p"),
+    @NamedQuery(name = "Pedido.findById", query = "SELECT p FROM Pedido p WHERE p.id = :id"),
+    @NamedQuery(name = "Pedido.findByFecha", query = "SELECT p FROM Pedido p WHERE p.fecha = :fecha"),
+    @NamedQuery(name = "Pedido.findByEstado", query = "SELECT p FROM Pedido p WHERE p.estado = :estado"),
+    @NamedQuery(name = "Pedido.findByTotal", query = "SELECT p FROM Pedido p WHERE p.total = :total")})
 public class Pedido implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,11 +36,11 @@ public class Pedido implements Serializable {
     @Basic(optional = false)
     @Column(name = "total")
     private BigDecimal total;
-    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
-    private Cliente clienteId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedidoId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pedidoId", fetch = FetchType.LAZY)
     private Collection<DetallePedido> detallePedidoCollection;
+    @JoinColumn(name = "cliente_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Cliente clienteId;
 
     public Pedido() {
     }
@@ -80,20 +88,20 @@ public class Pedido implements Serializable {
         this.total = total;
     }
 
-    public Cliente getClienteId() {
-        return clienteId;
-    }
-
-    public void setClienteId(Cliente clienteId) {
-        this.clienteId = clienteId;
-    }
-
     public Collection<DetallePedido> getDetallePedidoCollection() {
         return detallePedidoCollection;
     }
 
     public void setDetallePedidoCollection(Collection<DetallePedido> detallePedidoCollection) {
         this.detallePedidoCollection = detallePedidoCollection;
+    }
+
+    public Cliente getClienteId() {
+        return clienteId;
+    }
+
+    public void setClienteId(Cliente clienteId) {
+        this.clienteId = clienteId;
     }
 
     @Override

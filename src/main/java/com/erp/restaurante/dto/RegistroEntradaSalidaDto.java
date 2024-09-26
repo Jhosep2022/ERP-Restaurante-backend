@@ -9,23 +9,20 @@ public class RegistroEntradaSalidaDto {
     private Date horaEntrada;
     private Date horaSalida;
     private boolean retraso;
-    private Integer empleadosId;
+    private Integer usuariosId;
 
-    // Constructor vacío
     public RegistroEntradaSalidaDto() {
     }
 
-    // Constructor con parámetros
-    public RegistroEntradaSalidaDto(Integer id, Date fecha, Date horaEntrada, Date horaSalida, boolean retraso, Integer empleadosId) {
+    public RegistroEntradaSalidaDto(Integer id, Date fecha, Date horaEntrada, Date horaSalida, boolean retraso, Integer usuariosId) {
         this.id = id;
         this.fecha = fecha;
         this.horaEntrada = horaEntrada;
         this.horaSalida = horaSalida;
         this.retraso = retraso;
-        this.empleadosId = empleadosId;
+        this.usuariosId = usuariosId;
     }
 
-    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -66,11 +63,11 @@ public class RegistroEntradaSalidaDto {
         this.retraso = retraso;
     }
 
-    public Integer getEmpleadosId() {
-        return empleadosId;
+    public Integer getUsuariosId() {
+        return usuariosId;
     }
 
-    public void setEmpleadosId(Integer empleadosId) {
-        this.empleadosId = empleadosId;
+    public void setUsuariosId(Integer usuariosId) {
+        this.usuariosId = usuariosId;
     }
 }

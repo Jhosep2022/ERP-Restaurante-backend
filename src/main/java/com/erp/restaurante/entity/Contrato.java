@@ -1,13 +1,21 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import jakarta.persistence.*;
-
-
 @Entity
 @Table(name = "contrato")
+@NamedQueries({
+    @NamedQuery(name = "Contrato.findAll", query = "SELECT c FROM Contrato c"),
+    @NamedQuery(name = "Contrato.findById", query = "SELECT c FROM Contrato c WHERE c.id = :id"),
+    @NamedQuery(name = "Contrato.findByFechaInicio", query = "SELECT c FROM Contrato c WHERE c.fechaInicio = :fechaInicio"),
+    @NamedQuery(name = "Contrato.findByFechaConclusion", query = "SELECT c FROM Contrato c WHERE c.fechaConclusion = :fechaConclusion"),
+    @NamedQuery(name = "Contrato.findByFechaContrato", query = "SELECT c FROM Contrato c WHERE c.fechaContrato = :fechaContrato"),
+    @NamedQuery(name = "Contrato.findByIdentificador", query = "SELECT c FROM Contrato c WHERE c.identificador = :identificador")})
 public class Contrato implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,8 +38,9 @@ public class Contrato implements Serializable {
     @Basic(optional = false)
     @Column(name = "identificador")
     private int identificador;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "contratoId")
-    private Collection<Empleado> empleadoCollection;
+    @JoinColumn(name = "usuarios_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    private Usuarios usuariosId;
 
     public Contrato() {
     }
@@ -88,12 +97,12 @@ public class Contrato implements Serializable {
         this.identificador = identificador;
     }
 
-    public Collection<Empleado> getEmpleadoCollection() {
-        return empleadoCollection;
+    public Usuarios getUsuariosId() {
+        return usuariosId;
     }
 
-    public void setEmpleadoCollection(Collection<Empleado> empleadoCollection) {
-        this.empleadoCollection = empleadoCollection;
+    public void setUsuariosId(Usuarios usuariosId) {
+        this.usuariosId = usuariosId;
     }
 
     @Override

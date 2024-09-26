@@ -1,14 +1,15 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import jakarta.persistence.*;
-
-
 @Entity
 @Table(name = "ventas")
-
 public class Ventas implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,13 +25,13 @@ public class Ventas implements Serializable {
     @Column(name = "fecha")
     @Temporal(TemporalType.TIMESTAMP)
     private Date fecha;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ventasId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ventasId", fetch = FetchType.LAZY)
     private Collection<DetallePedido> detallePedidoCollection;
     @JoinColumn(name = "producto_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Producto productoId;
     @JoinColumn(name = "sucursal_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Sucursal sucursalId;
 
     public Ventas() {

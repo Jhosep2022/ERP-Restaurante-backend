@@ -8,22 +8,19 @@ public class HorarioTrabajoDto {
     private String diaSemana;
     private Date horaEntradaEsperada;
     private Date horaSalidaEsperada;
-    private Integer empleadoId;
+    private Integer usuariosId;
 
-    // Constructor vacío
     public HorarioTrabajoDto() {
     }
 
-    // Constructor con parámetros
-    public HorarioTrabajoDto(Integer id, String diaSemana, Date horaEntradaEsperada, Date horaSalidaEsperada, Integer empleadoId) {
+    public HorarioTrabajoDto(Integer id, String diaSemana, Date horaEntradaEsperada, Date horaSalidaEsperada, Integer usuariosId) {
         this.id = id;
         this.diaSemana = diaSemana;
         this.horaEntradaEsperada = horaEntradaEsperada;
         this.horaSalidaEsperada = horaSalidaEsperada;
-        this.empleadoId = empleadoId;
+        this.usuariosId = usuariosId;
     }
 
-    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -56,11 +53,11 @@ public class HorarioTrabajoDto {
         this.horaSalidaEsperada = horaSalidaEsperada;
     }
 
-    public Integer getEmpleadoId() {
-        return empleadoId;
+    public Integer getUsuariosId() {
+        return usuariosId;
     }
 
-    public void setEmpleadoId(Integer empleadoId) {
-        this.empleadoId = empleadoId;
+    public void setUsuariosId(Integer usuariosId) {
+        this.usuariosId = usuariosId;
     }
 }

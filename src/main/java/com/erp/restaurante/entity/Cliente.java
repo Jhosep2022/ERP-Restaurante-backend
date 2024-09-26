@@ -1,11 +1,21 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
 import jakarta.persistence.*;
-
 @Entity
 @Table(name = "cliente")
+@NamedQueries({
+    @NamedQuery(name = "Cliente.findAll", query = "SELECT c FROM Cliente c"),
+    @NamedQuery(name = "Cliente.findById", query = "SELECT c FROM Cliente c WHERE c.id = :id"),
+    @NamedQuery(name = "Cliente.findByNombre", query = "SELECT c FROM Cliente c WHERE c.nombre = :nombre"),
+    @NamedQuery(name = "Cliente.findByCorreo", query = "SELECT c FROM Cliente c WHERE c.correo = :correo"),
+    @NamedQuery(name = "Cliente.findByTelefono", query = "SELECT c FROM Cliente c WHERE c.telefono = :telefono"),
+    @NamedQuery(name = "Cliente.findByNit", query = "SELECT c FROM Cliente c WHERE c.nit = :nit")})
 public class Cliente implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -25,9 +35,9 @@ public class Cliente implements Serializable {
     @Basic(optional = false)
     @Column(name = "nit")
     private String nit;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clienteId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clienteId", fetch = FetchType.LAZY)
     private Collection<Facturas> facturasCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clienteId")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "clienteId", fetch = FetchType.LAZY)
     private Collection<Pedido> pedidoCollection;
 
     public Cliente() {
