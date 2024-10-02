@@ -1,5 +1,6 @@
 package com.erp.restaurante.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -42,7 +43,7 @@ public class Usuarios implements Serializable {
     private String password;
 
     @Basic(optional = true)
-    @Column(name = "fecha_ingreso",nullable = true)
+    @Column(name = "fecha_ingreso", nullable = true)
     @Temporal(TemporalType.DATE)
     private Date fechaIngreso;
 
@@ -60,40 +61,50 @@ public class Usuarios implements Serializable {
     private Date edad;
 
     @Basic(optional = true)
-    @Column(name = "telefono",nullable = true)
+    @Column(name = "telefono", nullable = true)
     private String telefono;
 
-    // Relaciones y colecciones
+    // Relaciones y colecciones, todas con @JsonIgnore para evitar LazyInitializationException
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuariosId", fetch = FetchType.LAZY)
     private Collection<Historialsalarios> historialsalariosCollection;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuariosId", fetch = FetchType.LAZY)
     private Collection<Contrato> contratoCollection;
 
+    @JsonIgnore
     @JoinColumn(name = "roles_id", referencedColumnName = "id")
     @ManyToOne(optional = true, fetch = FetchType.LAZY)
     private Roles rolesId;
 
+    @JsonIgnore
     @JoinColumn(name = "sucursal_id", nullable = false)
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Sucursal sucursalId;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuariosId", fetch = FetchType.LAZY)
     private Collection<Registroentradasalida> registroentradasalidaCollection;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuariosId", fetch = FetchType.LAZY)
     private Collection<BonosEmpleados> bonosEmpleadosCollection;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuariosId", fetch = FetchType.LAZY)
     private Collection<Horariostrabajo> horariostrabajoCollection;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuariosId", fetch = FetchType.LAZY)
     private Collection<Vacaciones> vacacionesCollection;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuariosId", fetch = FetchType.LAZY)
     private Collection<Auditoria> auditoriaCollection;
 
-    public Usuarios() {}
+    public Usuarios() {
+    }
 
     public Usuarios(Integer id, String nombre, String primerApellido, String segundoApellido, String correo, String password, Date fechaIngreso, boolean estado, String direccion, Date edad, String telefono) {
         this.id = id;
@@ -133,6 +144,7 @@ public class Usuarios implements Serializable {
         this.auditoriaCollection = auditoriaCollection;
     }
 
+    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -316,15 +328,6 @@ public class Usuarios implements Serializable {
                 ", direccion='" + direccion + '\'' +
                 ", edad=" + edad +
                 ", telefono='" + telefono + '\'' +
-                ", historialsalariosCollection=" + historialsalariosCollection +
-                ", contratoCollection=" + contratoCollection +
-                ", rolesId=" + rolesId +
-                ", sucursalId=" + sucursalId +
-                ", registroentradasalidaCollection=" + registroentradasalidaCollection +
-                ", bonosEmpleadosCollection=" + bonosEmpleadosCollection +
-                ", horariostrabajoCollection=" + horariostrabajoCollection +
-                ", vacacionesCollection=" + vacacionesCollection +
-                ", auditoriaCollection=" + auditoriaCollection +
                 '}';
     }
 }
