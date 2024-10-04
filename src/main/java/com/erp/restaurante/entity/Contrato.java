@@ -20,8 +20,8 @@ public class Contrato implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false, nullable = false)
     private Integer id;
     @Basic(optional = false)
     @Column(name = "fecha_inicio")

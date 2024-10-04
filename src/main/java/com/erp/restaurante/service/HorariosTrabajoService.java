@@ -11,6 +11,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -90,5 +91,11 @@ public class HorariosTrabajoService {
 
     public void deleteHorarioTrabajo(Integer id) {
         horariostrabajoRepository.deleteById(id);
+    }
+
+    @Transactional
+    public List<HorarioTrabajoDto> getHorariosTrabajoByFecha(Date diaSemana) {
+        List<Horariostrabajo> horarios = horariostrabajoRepository.findByDiaSemana(diaSemana);
+        return horarios.stream().map(this::convertEntityToDto).collect(Collectors.toList());
     }
 }

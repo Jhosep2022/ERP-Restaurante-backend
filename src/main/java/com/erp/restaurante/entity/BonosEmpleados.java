@@ -15,7 +15,7 @@ public class BonosEmpleados implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @Basic(optional = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
     @JoinColumn(name = "bonos_id", referencedColumnName = "id")

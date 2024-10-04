@@ -3,9 +3,11 @@ package com.erp.restaurante.controller;
 import com.erp.restaurante.dto.HorarioTrabajoDto;
 import com.erp.restaurante.service.HorariosTrabajoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,5 +51,11 @@ public class HorariosTrabajoController {
     public ResponseEntity<Void> deleteHorarioTrabajo(@PathVariable Integer id) {
         horariosTrabajoService.deleteHorarioTrabajo(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/byFecha")
+    public ResponseEntity<List<HorarioTrabajoDto>> getHorariosTrabajoByFecha(@RequestParam("fecha") @DateTimeFormat(pattern = "yyyy-MM-dd") Date fecha) {
+        List<HorarioTrabajoDto> horarios = horariosTrabajoService.getHorariosTrabajoByFecha(fecha);
+        return ResponseEntity.ok(horarios);
     }
 }

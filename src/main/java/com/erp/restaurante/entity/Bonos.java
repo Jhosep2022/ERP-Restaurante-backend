@@ -1,50 +1,49 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.erp.restaurante.entity;
 
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Collection;
-import jakarta.persistence.*;
+
 @Entity
 @Table(name = "bonos")
 @NamedQueries({
-    @NamedQuery(name = "Bonos.findAll", query = "SELECT b FROM Bonos b"),
-    @NamedQuery(name = "Bonos.findById", query = "SELECT b FROM Bonos b WHERE b.id = :id"),
-    @NamedQuery(name = "Bonos.findByNombre", query = "SELECT b FROM Bonos b WHERE b.nombre = :nombre"),
-    @NamedQuery(name = "Bonos.findByMonto", query = "SELECT b FROM Bonos b WHERE b.monto = :monto")})
+        @NamedQuery(name = "Bonos.findAll", query = "SELECT b FROM Bonos b"),
+        @NamedQuery(name = "Bonos.findById", query = "SELECT b FROM Bonos b WHERE b.id = :id"),
+        @NamedQuery(name = "Bonos.findByNombre", query = "SELECT b FROM Bonos b WHERE b.nombre = :nombre"),
+        @NamedQuery(name = "Bonos.findByMonto", query = "SELECT b FROM Bonos b WHERE b.monto = :monto")})
 public class Bonos implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
-    @Basic(optional = false)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // Indica que el ID se genera automáticamente.
+    @Column(name = "id", updatable = false, nullable = false)  // updatable = false y nullable = false aseguran que no se pueda cambiar el ID manualmente.
     private Integer id;
+
     @Basic(optional = false)
-    @Column(name = "nombre")
+    @Column(name = "nombre", length = 10, nullable = false)  // Se especifica una longitud máxima de 10 caracteres para nombre
     private String nombre;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+
     @Basic(optional = false)
-    @Column(name = "monto")
+    @Column(name = "monto", precision = 10, scale = 2, nullable = false)  // Configuración para el monto con precisión y escala
     private BigDecimal monto;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "bonosId", fetch = FetchType.LAZY)
     private Collection<BonosEmpleados> bonosEmpleadosCollection;
 
+    // Constructor vacío
     public Bonos() {
     }
 
-    public Bonos(Integer id) {
-        this.id = id;
-    }
-
+    // Constructor con parámetros
     public Bonos(Integer id, String nombre, BigDecimal monto) {
         this.id = id;
         this.nombre = nombre;
         this.monto = monto;
     }
 
+    // Getters y setters
     public Integer getId() {
         return id;
     }
@@ -86,20 +85,15 @@ public class Bonos implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Bonos)) {
             return false;
         }
         Bonos other = (Bonos) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return this.id != null && this.id.equals(other.id);
     }
 
     @Override
     public String toString() {
         return "com.erp.restaurante.entity.Bonos[ id=" + id + " ]";
     }
-    
 }
