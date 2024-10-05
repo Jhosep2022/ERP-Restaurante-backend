@@ -21,7 +21,10 @@ public class PersonnelEmployeeDto implements Serializable {
     private String photo;
     private String selfPassword;
     private String devicePassword;
-    private String devPrivilege;
+
+    // CAMBIO: devPrivilege de String a Integer
+    private Integer devPrivilege;
+
     private String cardNo;
     private String accGroup;
     private String accTimezone;
@@ -39,12 +42,20 @@ public class PersonnelEmployeeDto implements Serializable {
     private String ssn;
     private Date updateTime;
     private Date hireDate;
-    private String verifyMode;
+    private Integer verifyMode;
     private String city;
-    private String empType;
+
+    // CAMBIO: empType de String a Short
+    private Short empType;
+
     private Boolean enablePayroll;
-    private String appStatus;
-    private String appRole;
+
+    // CAMBIO: appStatus de String a Short
+    private Short appStatus;
+
+    // CAMBIO: appRole de String a Short
+    private Short appRole;
+
     private String email;
     private Date lastLogin;
     private Boolean isActive;
@@ -52,15 +63,22 @@ public class PersonnelEmployeeDto implements Serializable {
     private String loginIp;
     private Long departmentId;
     private Long positionId;
-    private String leaveGroup;
-    private String empCodeDigit;
+    private Integer leaveGroup;
+
+
+    // CAMBIO: empCodeDigit de String a Long
+    private Long empCodeDigit;
+
     private Long superiorId;
     private Long companyId;
 
     // Constructor vacío
     public PersonnelEmployeeDto() {}
 
-    public PersonnelEmployeeDto(Long id, Date createTime, String createUser, Date changeTime, String changeUser, Integer status, String empCode, String firstName, String lastName, String nickname, String passport, String driverLicenseAutomobile, String driverLicenseMotorcycle, String photo, String selfPassword, String devicePassword, String devPrivilege, String cardNo, String accGroup, String accTimezone, String gender, Date birthday, String address, String postcode, String officeTel, String contactTel, String mobile, String national, String religion, String title, String enrollSn, String ssn, Date updateTime, Date hireDate, String verifyMode, String city, String empType, Boolean enablePayroll, String appStatus, String appRole, String email, Date lastLogin, Boolean isActive, String sessionKey, String loginIp, Long departmentId, Long positionId, String leaveGroup, String empCodeDigit, Long superiorId, Long companyId) {
+    // Constructor con todos los campos (ajustado con los cambios de tipo)
+
+
+    public PersonnelEmployeeDto(Long id, Date createTime, String createUser, Date changeTime, String changeUser, Integer status, String empCode, String firstName, String lastName, String nickname, String passport, String driverLicenseAutomobile, String driverLicenseMotorcycle, String photo, String selfPassword, String devicePassword, Integer devPrivilege, String cardNo, String accGroup, String accTimezone, String gender, Date birthday, String address, String postcode, String officeTel, String contactTel, String mobile, String national, String religion, String title, String enrollSn, String ssn, Date updateTime, Date hireDate, Integer verifyMode, String city, Short empType, Boolean enablePayroll, Short appStatus, Short appRole, String email, Date lastLogin, Boolean isActive, String sessionKey, String loginIp, Long departmentId, Long positionId, Integer leaveGroup, Long empCodeDigit, Long superiorId, Long companyId) {
         this.id = id;
         this.createTime = createTime;
         this.createUser = createUser;
@@ -242,11 +260,11 @@ public class PersonnelEmployeeDto implements Serializable {
         this.devicePassword = devicePassword;
     }
 
-    public String getDevPrivilege() {
+    public Integer getDevPrivilege() {
         return devPrivilege;
     }
 
-    public void setDevPrivilege(String devPrivilege) {
+    public void setDevPrivilege(Integer devPrivilege) {
         this.devPrivilege = devPrivilege;
     }
 
@@ -386,11 +404,11 @@ public class PersonnelEmployeeDto implements Serializable {
         this.hireDate = hireDate;
     }
 
-    public String getVerifyMode() {
+    public Integer getVerifyMode() {
         return verifyMode;
     }
 
-    public void setVerifyMode(String verifyMode) {
+    public void setVerifyMode(Integer verifyMode) {
         this.verifyMode = verifyMode;
     }
 
@@ -402,11 +420,11 @@ public class PersonnelEmployeeDto implements Serializable {
         this.city = city;
     }
 
-    public String getEmpType() {
+    public Short getEmpType() {
         return empType;
     }
 
-    public void setEmpType(String empType) {
+    public void setEmpType(Short empType) {
         this.empType = empType;
     }
 
@@ -418,19 +436,19 @@ public class PersonnelEmployeeDto implements Serializable {
         this.enablePayroll = enablePayroll;
     }
 
-    public String getAppStatus() {
+    public Short getAppStatus() {
         return appStatus;
     }
 
-    public void setAppStatus(String appStatus) {
+    public void setAppStatus(Short appStatus) {
         this.appStatus = appStatus;
     }
 
-    public String getAppRole() {
+    public Short getAppRole() {
         return appRole;
     }
 
-    public void setAppRole(String appRole) {
+    public void setAppRole(Short appRole) {
         this.appRole = appRole;
     }
 
@@ -490,19 +508,19 @@ public class PersonnelEmployeeDto implements Serializable {
         this.positionId = positionId;
     }
 
-    public String getLeaveGroup() {
+    public Integer getLeaveGroup() {
         return leaveGroup;
     }
 
-    public void setLeaveGroup(String leaveGroup) {
+    public void setLeaveGroup(Integer leaveGroup) {
         this.leaveGroup = leaveGroup;
     }
 
-    public String getEmpCodeDigit() {
+    public Long getEmpCodeDigit() {
         return empCodeDigit;
     }
 
-    public void setEmpCodeDigit(String empCodeDigit) {
+    public void setEmpCodeDigit(Long empCodeDigit) {
         this.empCodeDigit = empCodeDigit;
     }
 

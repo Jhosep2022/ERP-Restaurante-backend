@@ -60,8 +60,9 @@ public class PersonnelEmployee implements Serializable {
     @Column(name = "device_password")
     private String devicePassword;
 
+    // CAMBIO: Ajustar devPrivilege a Integer
     @Column(name = "dev_privilege")
-    private String devPrivilege;
+    private Integer devPrivilege;
 
     @Column(name = "card_no")
     private String cardNo;
@@ -118,22 +119,24 @@ public class PersonnelEmployee implements Serializable {
     private Date hireDate;
 
     @Column(name = "verify_mode")
-    private String verifyMode;
+    private Integer verifyMode;
 
     @Column(name = "city")
     private String city;
 
     @Column(name = "emp_type")
-    private String empType;
+    private Short empType;
 
     @Column(name = "enable_payroll")
     private Boolean enablePayroll;
 
+    // CAMBIO: Ajustar appStatus a Short
     @Column(name = "app_status")
-    private String appStatus;
+    private Short appStatus;
 
+    // CAMBIO: Ajustar appRole a Short
     @Column(name = "app_role")
-    private String appRole;
+    private Short appRole;
 
     @Column(name = "email")
     private String email;
@@ -158,10 +161,10 @@ public class PersonnelEmployee implements Serializable {
     private Long positionId;
 
     @Column(name = "leave_group")
-    private String leaveGroup;
+    private Integer leaveGroup;
 
     @Column(name = "emp_code_digit")
-    private String empCodeDigit;
+    private Long  empCodeDigit;
 
     @Column(name = "superior_id")
     private Long superiorId;
@@ -172,11 +175,7 @@ public class PersonnelEmployee implements Serializable {
     public PersonnelEmployee() {
     }
 
-    public PersonnelEmployee(Long id) {
-        this.id = id;
-    }
-
-    public PersonnelEmployee(Long id, Date createTime, String createUser, Date changeTime, String changeUser, Integer status, String empCode, String firstName, String lastName, String nickname, String passport, String driverLicenseAutomobile, String driverLicenseMotorcycle, String photo, String selfPassword, String devicePassword, String devPrivilege, String cardNo, String accGroup, String accTimezone, String gender, Date birthday, String address, String postcode, String officeTel, String contactTel, String mobile, String national, String religion, String title, String enrollSn, String ssn, Date updateTime, Date hireDate, String verifyMode, String city, String empType, Boolean enablePayroll, String appStatus, String appRole, String email, Date lastLogin, Boolean isActive, String sessionKey, String loginIp, Long departmentId, Long positionId, String leaveGroup, String empCodeDigit, Long superiorId, Long companyId) {
+    public PersonnelEmployee(Long id, Date createTime, String createUser, Date changeTime, String changeUser, Integer status, String empCode, String firstName, String lastName, String nickname, String passport, String driverLicenseAutomobile, String driverLicenseMotorcycle, String photo, String selfPassword, String devicePassword, Integer devPrivilege, String cardNo, String accGroup, String accTimezone, String gender, Date birthday, String address, String postcode, String officeTel, String contactTel, String mobile, String national, String religion, String title, String enrollSn, String ssn, Date updateTime, Date hireDate, Integer verifyMode, String city, Short empType, Boolean enablePayroll, Short appStatus, Short appRole, String email, Date lastLogin, Boolean isActive, String sessionKey, String loginIp, Long departmentId, Long positionId, Integer leaveGroup, Long empCodeDigit, Long superiorId, Long companyId) {
         this.id = id;
         this.createTime = createTime;
         this.createUser = createUser;
@@ -358,11 +357,11 @@ public class PersonnelEmployee implements Serializable {
         this.devicePassword = devicePassword;
     }
 
-    public String getDevPrivilege() {
+    public Integer getDevPrivilege() {
         return devPrivilege;
     }
 
-    public void setDevPrivilege(String devPrivilege) {
+    public void setDevPrivilege(Integer devPrivilege) {
         this.devPrivilege = devPrivilege;
     }
 
@@ -502,11 +501,11 @@ public class PersonnelEmployee implements Serializable {
         this.hireDate = hireDate;
     }
 
-    public String getVerifyMode() {
+    public Integer getVerifyMode() {
         return verifyMode;
     }
 
-    public void setVerifyMode(String verifyMode) {
+    public void setVerifyMode(Integer verifyMode) {
         this.verifyMode = verifyMode;
     }
 
@@ -518,11 +517,11 @@ public class PersonnelEmployee implements Serializable {
         this.city = city;
     }
 
-    public String getEmpType() {
+    public Short getEmpType() {
         return empType;
     }
 
-    public void setEmpType(String empType) {
+    public void setEmpType(Short empType) {
         this.empType = empType;
     }
 
@@ -534,19 +533,19 @@ public class PersonnelEmployee implements Serializable {
         this.enablePayroll = enablePayroll;
     }
 
-    public String getAppStatus() {
+    public Short getAppStatus() {
         return appStatus;
     }
 
-    public void setAppStatus(String appStatus) {
+    public void setAppStatus(Short appStatus) {
         this.appStatus = appStatus;
     }
 
-    public String getAppRole() {
+    public Short getAppRole() {
         return appRole;
     }
 
-    public void setAppRole(String appRole) {
+    public void setAppRole(Short appRole) {
         this.appRole = appRole;
     }
 
@@ -606,19 +605,19 @@ public class PersonnelEmployee implements Serializable {
         this.positionId = positionId;
     }
 
-    public String getLeaveGroup() {
+    public Integer getLeaveGroup() {
         return leaveGroup;
     }
 
-    public void setLeaveGroup(String leaveGroup) {
+    public void setLeaveGroup(Integer leaveGroup) {
         this.leaveGroup = leaveGroup;
     }
 
-    public String getEmpCodeDigit() {
+    public Long getEmpCodeDigit() {
         return empCodeDigit;
     }
 
-    public void setEmpCodeDigit(String empCodeDigit) {
+    public void setEmpCodeDigit(Long empCodeDigit) {
         this.empCodeDigit = empCodeDigit;
     }
 
@@ -636,62 +635,5 @@ public class PersonnelEmployee implements Serializable {
 
     public void setCompanyId(Long companyId) {
         this.companyId = companyId;
-    }
-
-    @Override
-    public String toString() {
-        return "PersonnelEmployee{" +
-                "id=" + id +
-                ", createTime=" + createTime +
-                ", createUser='" + createUser + '\'' +
-                ", changeTime=" + changeTime +
-                ", changeUser='" + changeUser + '\'' +
-                ", status=" + status +
-                ", empCode='" + empCode + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", passport='" + passport + '\'' +
-                ", driverLicenseAutomobile='" + driverLicenseAutomobile + '\'' +
-                ", driverLicenseMotorcycle='" + driverLicenseMotorcycle + '\'' +
-                ", photo='" + photo + '\'' +
-                ", selfPassword='" + selfPassword + '\'' +
-                ", devicePassword='" + devicePassword + '\'' +
-                ", devPrivilege='" + devPrivilege + '\'' +
-                ", cardNo='" + cardNo + '\'' +
-                ", accGroup='" + accGroup + '\'' +
-                ", accTimezone='" + accTimezone + '\'' +
-                ", gender='" + gender + '\'' +
-                ", birthday=" + birthday +
-                ", address='" + address + '\'' +
-                ", postcode='" + postcode + '\'' +
-                ", officeTel='" + officeTel + '\'' +
-                ", contactTel='" + contactTel + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", national='" + national + '\'' +
-                ", religion='" + religion + '\'' +
-                ", title='" + title + '\'' +
-                ", enrollSn='" + enrollSn + '\'' +
-                ", ssn='" + ssn + '\'' +
-                ", updateTime=" + updateTime +
-                ", hireDate=" + hireDate +
-                ", verifyMode='" + verifyMode + '\'' +
-                ", city='" + city + '\'' +
-                ", empType='" + empType + '\'' +
-                ", enablePayroll=" + enablePayroll +
-                ", appStatus='" + appStatus + '\'' +
-                ", appRole='" + appRole + '\'' +
-                ", email='" + email + '\'' +
-                ", lastLogin=" + lastLogin +
-                ", isActive=" + isActive +
-                ", sessionKey='" + sessionKey + '\'' +
-                ", loginIp='" + loginIp + '\'' +
-                ", departmentId=" + departmentId +
-                ", positionId=" + positionId +
-                ", leaveGroup='" + leaveGroup + '\'' +
-                ", empCodeDigit='" + empCodeDigit + '\'' +
-                ", superiorId=" + superiorId +
-                ", companyId=" + companyId +
-                '}';
     }
 }

@@ -1,73 +1,73 @@
 package com.erp.restaurante.dto;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class RegistroEntradaSalidaDto {
 
-    private Integer id;
-    private Date fecha;
-    private Date horaEntrada;
-    private Date horaSalida;
-    private boolean retraso;
-    private Integer usuariosId;
+    private Long id;
+    private LocalDate fecha;
+    private LocalTime horaMarcada;
+    private Integer tipoMarcado;
+    private Boolean retraso;
+    private Long usuarioId;
 
-    public RegistroEntradaSalidaDto() {
-    }
-
-    public RegistroEntradaSalidaDto(Integer id, Date fecha, Date horaEntrada, Date horaSalida, boolean retraso, Integer usuariosId) {
+    // Constructor
+    public RegistroEntradaSalidaDto(Long id, LocalDate fecha, LocalTime horaMarcada, Integer tipoMarcado, Boolean retraso, Long usuarioId) {
         this.id = id;
         this.fecha = fecha;
-        this.horaEntrada = horaEntrada;
-        this.horaSalida = horaSalida;
+        this.horaMarcada = horaMarcada;
+        this.tipoMarcado = tipoMarcado;
         this.retraso = retraso;
-        this.usuariosId = usuariosId;
+        this.usuarioId = usuarioId;
     }
 
-    public Integer getId() {
+    // Getters y Setters
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
-    public Date getHoraEntrada() {
-        return horaEntrada;
+    public LocalTime getHoraMarcada() {
+        return horaMarcada;
     }
 
-    public void setHoraEntrada(Date horaEntrada) {
-        this.horaEntrada = horaEntrada;
+    public void setHoraMarcada(LocalTime horaMarcada) {
+        this.horaMarcada = horaMarcada;
     }
 
-    public Date getHoraSalida() {
-        return horaSalida;
+    public Integer getTipoMarcado() {
+        return tipoMarcado;
     }
 
-    public void setHoraSalida(Date horaSalida) {
-        this.horaSalida = horaSalida;
+    public void setTipoMarcado(Integer tipoMarcado) {
+        this.tipoMarcado = tipoMarcado;
     }
 
-    public boolean isRetraso() {
+    public Boolean getRetraso() {
         return retraso;
     }
 
-    public void setRetraso(boolean retraso) {
+    public void setRetraso(Boolean retraso) {
         this.retraso = retraso;
     }
 
-    public Integer getUsuariosId() {
-        return usuariosId;
+    public Long getUsuarioId() {
+        return usuarioId;
     }
 
-    public void setUsuariosId(Integer usuariosId) {
-        this.usuariosId = usuariosId;
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
     }
 }

@@ -1,127 +1,90 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.erp.restaurante.entity;
 
-import java.io.Serializable;
-import java.util.Date;
 import jakarta.persistence.*;
-@Entity
-@Table(name = "registroentradasalida")
-public class Registroentradasalida implements Serializable {
+import java.time.LocalDate;
+import java.time.LocalTime;
 
-    private static final long serialVersionUID = 1L;
+@Entity
+@Table(name = "RegistroEntradaSalida")
+public class Registroentradasalida {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
-    @Basic(optional = false)
-    @Column(name = "fecha")
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
-    @Basic(optional = false)
-    @Column(name = "hora_entrada")
-    @Temporal(TemporalType.TIME)
-    private Date horaEntrada;
-    @Basic(optional = false)
-    @Column(name = "hora_salida")
-    @Temporal(TemporalType.TIME)
-    private Date horaSalida;
-    @Basic(optional = false)
-    @Column(name = "retraso")
-    private boolean retraso;
-    @JoinColumn(name = "usuarios_id", referencedColumnName = "id")
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
-    private Usuarios usuariosId;
+    private Long id;
 
-    public Registroentradasalida() {
-    }
+    @Column(name = "fecha", nullable = false)
+    private LocalDate fecha;
 
-    public Registroentradasalida(Integer id) {
-        this.id = id;
-    }
+    @Column(name = "hora_marcada", nullable = false)
+    private LocalTime horaMarcada;
 
-    public Registroentradasalida(Integer id, Date fecha, Date horaEntrada, Date horaSalida, boolean retraso) {
+    @Column(name = "tipo_marcado", nullable = false)
+    private Integer tipoMarcado;
+
+    @Column(name = "retraso", nullable = false)
+    private Boolean retraso;
+
+    @ManyToOne
+    @JoinColumn(name = "Usuarios_id", referencedColumnName = "id", nullable = false)
+    private Usuarios usuario; // <-- Aquí la propiedad debe coincidir con "mappedBy" en Usuarios
+
+    public Registroentradasalida() {}
+
+    public Registroentradasalida(Long id, LocalDate fecha, LocalTime horaMarcada, Integer tipoMarcado, Boolean retraso, Usuarios usuario) {
         this.id = id;
         this.fecha = fecha;
-        this.horaEntrada = horaEntrada;
-        this.horaSalida = horaSalida;
+        this.horaMarcada = horaMarcada;
+        this.tipoMarcado = tipoMarcado;
         this.retraso = retraso;
+        this.usuario = usuario;
     }
 
-    public Integer getId() {
+    // Getters y Setters
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
 
-    public Date getHoraEntrada() {
-        return horaEntrada;
+    public LocalTime getHoraMarcada() {
+        return horaMarcada;
     }
 
-    public void setHoraEntrada(Date horaEntrada) {
-        this.horaEntrada = horaEntrada;
+    public void setHoraMarcada(LocalTime horaMarcada) {
+        this.horaMarcada = horaMarcada;
     }
 
-    public Date getHoraSalida() {
-        return horaSalida;
+    public Integer getTipoMarcado() {
+        return tipoMarcado;
     }
 
-    public void setHoraSalida(Date horaSalida) {
-        this.horaSalida = horaSalida;
+    public void setTipoMarcado(Integer tipoMarcado) {
+        this.tipoMarcado = tipoMarcado;
     }
 
-    public boolean getRetraso() {
+    public Boolean getRetraso() {
         return retraso;
     }
 
-    public void setRetraso(boolean retraso) {
+    public void setRetraso(Boolean retraso) {
         this.retraso = retraso;
     }
 
-    public Usuarios getUsuariosId() {
-        return usuariosId;
+    public Usuarios getUsuario() {
+        return usuario;
     }
 
-    public void setUsuariosId(Usuarios usuariosId) {
-        this.usuariosId = usuariosId;
+    public void setUsuario(Usuarios usuario) {
+        this.usuario = usuario;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Registroentradasalida)) {
-            return false;
-        }
-        Registroentradasalida other = (Registroentradasalida) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.erp.restaurante.entity.Registroentradasalida[ id=" + id + " ]";
-    }
-    
 }

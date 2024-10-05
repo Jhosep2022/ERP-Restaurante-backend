@@ -1,5 +1,6 @@
 package com.erp.restaurante.controller;
 
+import com.erp.restaurante.dto.AuthRequestDto;
 import com.erp.restaurante.dto.ResponseDto;
 import com.erp.restaurante.dto.UsuariosDto;
 import com.erp.restaurante.service.UsuarioService;
@@ -19,6 +20,22 @@ public class UsuariosController {
 
     @Autowired
     private UsuarioService usuarioService;
+
+
+    // Endpoint para autenticar a un usuario (login) utilizando RequestBody
+    @PostMapping("/login")
+    public ResponseEntity<ResponseDto<UsuariosDto>> login(@RequestBody AuthRequestDto loginRequest) {
+        logger.info("Intentando iniciar sesión con el correo: {}", loginRequest.getCorreo());
+        try {
+            UsuariosDto usuarioDto = usuarioService.authenticate(loginRequest.getCorreo(), loginRequest.getPassword());
+            logger.info("Usuario autenticado con éxito: {}", usuarioDto.getNombre());
+            return ResponseEntity.ok(new ResponseDto<>(true, "Inicio de sesión exitoso", usuarioDto));
+        } catch (RuntimeException e) {
+            logger.error("Error en el inicio de sesión: {}", e.getMessage());
+            return ResponseEntity.ok(new ResponseDto<>(false, "Correo o contraseña incorrectos", null));
+        }
+    }
+
 
     @PostMapping
     public ResponseEntity<ResponseDto<UsuariosDto>> createUsuario(@RequestBody UsuariosDto usuarioDto) {
@@ -64,4 +81,6 @@ public class UsuariosController {
         logger.info("Usuario con ID: {} eliminado con éxito", id);
         return ResponseEntity.ok(new ResponseDto<>(true, "Usuario eliminado con éxito", null));
     }
+
+
 }

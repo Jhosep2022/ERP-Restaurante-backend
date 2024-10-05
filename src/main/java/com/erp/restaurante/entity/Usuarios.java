@@ -1,10 +1,10 @@
 package com.erp.restaurante.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
-import jakarta.persistence.*;
 
 @Entity
 @Table(name = "usuarios")
@@ -66,6 +66,10 @@ public class Usuarios implements Serializable {
 
     // Relaciones y colecciones, todas con @JsonIgnore para evitar LazyInitializationException
     @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario", fetch = FetchType.LAZY) // Cambié "usuariosId" a "usuario"
+    private Collection<Registroentradasalida> registroentradasalidaCollection;
+
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuariosId", fetch = FetchType.LAZY)
     private Collection<Historialsalarios> historialsalariosCollection;
 
@@ -85,10 +89,6 @@ public class Usuarios implements Serializable {
 
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuariosId", fetch = FetchType.LAZY)
-    private Collection<Registroentradasalida> registroentradasalidaCollection;
-
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuariosId", fetch = FetchType.LAZY)
     private Collection<BonosEmpleados> bonosEmpleadosCollection;
 
     @JsonIgnore
@@ -103,8 +103,7 @@ public class Usuarios implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuariosId", fetch = FetchType.LAZY)
     private Collection<Auditoria> auditoriaCollection;
 
-    public Usuarios() {
-    }
+    public Usuarios() {}
 
     public Usuarios(Integer id, String nombre, String primerApellido, String segundoApellido, String correo, String password, Date fechaIngreso, boolean estado, String direccion, Date edad, String telefono) {
         this.id = id;
@@ -118,30 +117,6 @@ public class Usuarios implements Serializable {
         this.direccion = direccion;
         this.edad = edad;
         this.telefono = telefono;
-    }
-
-    public Usuarios(Integer id, String empCode, String nombre, String primerApellido, String segundoApellido, String correo, String password, Date fechaIngreso, boolean estado, String direccion, Date edad, String telefono, Collection<Historialsalarios> historialsalariosCollection, Collection<Contrato> contratoCollection, Roles rolesId, Sucursal sucursalId, Collection<Registroentradasalida> registroentradasalidaCollection, Collection<BonosEmpleados> bonosEmpleadosCollection, Collection<Horariostrabajo> horariostrabajoCollection, Collection<Vacaciones> vacacionesCollection, Collection<Auditoria> auditoriaCollection) {
-        this.id = id;
-        this.empCode = empCode;
-        this.nombre = nombre;
-        this.primerApellido = primerApellido;
-        this.segundoApellido = segundoApellido;
-        this.correo = correo;
-        this.password = password;
-        this.fechaIngreso = fechaIngreso;
-        this.estado = estado;
-        this.direccion = direccion;
-        this.edad = edad;
-        this.telefono = telefono;
-        this.historialsalariosCollection = historialsalariosCollection;
-        this.contratoCollection = contratoCollection;
-        this.rolesId = rolesId;
-        this.sucursalId = sucursalId;
-        this.registroentradasalidaCollection = registroentradasalidaCollection;
-        this.bonosEmpleadosCollection = bonosEmpleadosCollection;
-        this.horariostrabajoCollection = horariostrabajoCollection;
-        this.vacacionesCollection = vacacionesCollection;
-        this.auditoriaCollection = auditoriaCollection;
     }
 
     // Getters y Setters
@@ -241,6 +216,14 @@ public class Usuarios implements Serializable {
         this.telefono = telefono;
     }
 
+    public Collection<Registroentradasalida> getRegistroentradasalidaCollection() {
+        return registroentradasalidaCollection;
+    }
+
+    public void setRegistroentradasalidaCollection(Collection<Registroentradasalida> registroentradasalidaCollection) {
+        this.registroentradasalidaCollection = registroentradasalidaCollection;
+    }
+
     public Collection<Historialsalarios> getHistorialsalariosCollection() {
         return historialsalariosCollection;
     }
@@ -271,14 +254,6 @@ public class Usuarios implements Serializable {
 
     public void setSucursalId(Sucursal sucursalId) {
         this.sucursalId = sucursalId;
-    }
-
-    public Collection<Registroentradasalida> getRegistroentradasalidaCollection() {
-        return registroentradasalidaCollection;
-    }
-
-    public void setRegistroentradasalidaCollection(Collection<Registroentradasalida> registroentradasalidaCollection) {
-        this.registroentradasalidaCollection = registroentradasalidaCollection;
     }
 
     public Collection<BonosEmpleados> getBonosEmpleadosCollection() {

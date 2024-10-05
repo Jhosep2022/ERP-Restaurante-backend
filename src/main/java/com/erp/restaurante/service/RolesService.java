@@ -31,4 +31,8 @@ public class RolesService {
         rolesDto.setNombre(rol.getNombre());
         return rolesDto;
     }
+
+    public Roles findById(Integer id) {
+        return rolesRepository.findById(id).orElse(null);
+    }
 }
