@@ -1,6 +1,8 @@
 package com.erp.restaurante.service;
 
+import com.erp.restaurante.config.JwtUtil;
 import com.erp.restaurante.config.PasswordUtil;
+import com.erp.restaurante.dto.AuthResponseDto;
 import com.erp.restaurante.dto.UsuariosDto;
 import com.erp.restaurante.entity.Roles;
 import com.erp.restaurante.entity.Sucursal;
@@ -31,21 +33,20 @@ public class UsuarioService {
     @Autowired
     private RolesService rolesService;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
     // Método para autenticar al usuario utilizando correo y contraseña
-    public UsuariosDto authenticate(String correo, String password) {
-        // Buscar el usuario por correo
+    public AuthResponseDto authenticate(String correo, String password) {
         Usuarios usuario = usuariosRepository.findByCorreo(correo);
-        if (usuario == null) {
+        if (usuario == null || !PasswordUtil.verifyPassword(password, usuario.getPassword())) {
             throw new RuntimeException("Correo o contraseña incorrectos");
         }
 
-        // Validar la contraseña usando PasswordUtil (comparar la contraseña encriptada)
-        if (!PasswordUtil.verifyPassword(password, usuario.getPassword())) {
-            throw new RuntimeException("Correo o contraseña incorrectos");
-        }
+        UsuariosDto usuarioDto = mapToDto(usuario);
+        String token = jwtUtil.generateToken(usuarioDto);
 
-        // Retornar el usuario si es autenticado correctamente
-        return mapToDto(usuario);
+        return new AuthResponseDto(usuarioDto, token);
     }
 
     // Método para generar el siguiente empCode
