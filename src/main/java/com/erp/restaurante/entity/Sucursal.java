@@ -2,6 +2,7 @@ package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import java.util.Collection;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -25,12 +26,15 @@ public class Sucursal implements Serializable {
     private String direccion;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursalId", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Collection<Producto> productoCollection;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursalId", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Collection<Usuarios> usuariosCollection;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "sucursalId", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Collection<Ventas> ventasCollection;
 
     public Sucursal() {}

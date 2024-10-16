@@ -1,31 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import jakarta.persistence.*;
+
 @Entity
 @Table(name = "historialsalarios")
 public class Historialsalarios implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
-    @Basic(optional = false)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, updatable = false)
     private Integer id;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
+
     @Basic(optional = false)
     @Column(name = "salario")
     private BigDecimal salario;
+
     @Basic(optional = false)
     @Column(name = "fechapago")
     private int fechapago;
+
     @JoinColumn(name = "descuento_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Descuento descuentoId;
+
     @JoinColumn(name = "usuarios_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Usuarios usuariosId;
@@ -33,14 +34,11 @@ public class Historialsalarios implements Serializable {
     public Historialsalarios() {
     }
 
-    public Historialsalarios(Integer id) {
-        this.id = id;
-    }
-
-    public Historialsalarios(Integer id, BigDecimal salario, int fechapago) {
-        this.id = id;
+    public Historialsalarios(BigDecimal salario, int fechapago, Descuento descuentoId, Usuarios usuariosId) {
         this.salario = salario;
         this.fechapago = fechapago;
+        this.descuentoId = descuentoId;
+        this.usuariosId = usuariosId;
     }
 
     public Integer getId() {
@@ -92,20 +90,15 @@ public class Historialsalarios implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof Historialsalarios)) {
             return false;
         }
         Historialsalarios other = (Historialsalarios) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return (this.id != null || other.id == null) && (this.id == null || this.id.equals(other.id));
     }
 
     @Override
     public String toString() {
         return "com.erp.restaurante.entity.Historialsalarios[ id=" + id + " ]";
     }
-    
 }

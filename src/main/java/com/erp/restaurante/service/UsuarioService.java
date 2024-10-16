@@ -132,12 +132,14 @@ public class UsuarioService {
 
     // Método para obtener todos los usuarios
     public List<UsuariosDto> getAllUsuarios() {
-        List<Usuarios> usuarios = usuariosRepository.findAll();
+        List<Usuarios> usuarios = usuariosRepository.findByEstado(true);
         return usuarios.stream().map(this::mapToDto).collect(Collectors.toList());
     }
 
     public UsuariosDto findById(Integer id) {
-        Usuarios usuario = usuariosRepository.findById(id).orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        Usuarios usuario = usuariosRepository.findById(id)
+                .filter(Usuarios::isEstado) // Solo usuarios con estado "true"
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
         return mapToDto(usuario);
     }
 
@@ -190,7 +192,8 @@ public class UsuarioService {
     public void delete(Integer id) {
         Usuarios usuario = usuariosRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
-        usuariosRepository.delete(usuario);
+        usuario.setEstado(false);
+        usuariosRepository.save(usuario);
     }
 
     // Método para convertir entidad a DTO

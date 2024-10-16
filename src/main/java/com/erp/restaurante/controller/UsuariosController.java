@@ -126,9 +126,9 @@ public class UsuariosController {
                     .body(new ResponseDto<>(false, "Token inválido o usuario no autorizado", null));
         }
 
-        logger.info("Usuario autorizado para eliminar el usuario con ID: {}", id);
+        logger.info("Usuario autorizado para eliminar (lógicamente) el usuario con ID: {}", id);
         usuarioService.delete(id);
-        logger.info("Usuario con ID: {} eliminado con éxito", id);
-        return ResponseEntity.ok(new ResponseDto<>(true, "Usuario eliminado con éxito", null));
+        logger.info("Usuario con ID: {} marcado como inactivo con éxito", id);
+        return ResponseEntity.ok(new ResponseDto<>(true, "Usuario marcado como inactivo con éxito", null));
     }
 }
