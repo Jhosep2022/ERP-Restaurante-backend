@@ -209,6 +209,7 @@ public class UsuarioService {
         usuarioDto.setEstado(usuario.isEstado());
         usuarioDto.setTelefono(usuario.getTelefono());
         usuarioDto.setDireccion(usuario.getDireccion());
+        usuarioDto.setRolesId(usuario.getRolesId() != null ? usuario.getRolesId().getId() : null);
         usuarioDto.setEdad(usuario.getEdad());
         usuarioDto.setSucursalId(usuario.getSucursalId() != null ? usuario.getSucursalId().getId() : null);
         return usuarioDto;
