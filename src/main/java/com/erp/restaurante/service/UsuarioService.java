@@ -205,6 +205,7 @@ public class UsuarioService {
         usuarioDto.setPrimerApellido(usuario.getPrimerApellido());
         usuarioDto.setSegundoApellido(usuario.getSegundoApellido());
         usuarioDto.setCorreo(usuario.getCorreo());
+        usuarioDto.setFechaIngreso(usuario.getFechaIngreso());
         usuarioDto.setPassword(usuario.getPassword());
         usuarioDto.setEstado(usuario.isEstado());
         usuarioDto.setTelefono(usuario.getTelefono());
