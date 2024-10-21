@@ -56,7 +56,18 @@ public class TurnoController {
 
     // Crear un nuevo turno (POST)
     @PostMapping
-    public ResponseEntity<Turno> createTurno(@RequestBody Turno turno) {
+    public ResponseEntity<Turno> createTurno(
+            @RequestBody Turno turno,
+            @RequestHeader("Authorization") String token) {
+
+        // Extraer el token y validar
+        String extractedToken = token.replace("Bearer ", "");
+        String username = jwtUtil.extractUsername(extractedToken);
+
+        if (username == null || !jwtUtil.validateToken(extractedToken, username)) {
+            return ResponseEntity.status(401).build();  // Retornar 401 Unauthorized si el token no es válido
+        }
+
         Turno savedTurno = turnoService.createTurno(turno);
         return ResponseEntity.ok(savedTurno);
     }

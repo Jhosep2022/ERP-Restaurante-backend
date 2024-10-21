@@ -8,7 +8,6 @@ public class AuditoriaDto {
     private String tabla;
     private String accion;
     private Date fecfhaHora;
-    private Object cambios;
     private String detalle;
     private int registroId;
     private Integer usuariosId;
@@ -18,18 +17,17 @@ public class AuditoriaDto {
     }
 
     // Constructor con parámetros
-    public AuditoriaDto(Integer id, String tabla, String accion, Date fecfhaHora, Object cambios, String detalle, int registroId, Integer usuariosId) {
+
+    public AuditoriaDto(Integer id, String tabla, String accion, Date fecfhaHora, String detalle, int registroId, Integer usuariosId) {
         this.id = id;
         this.tabla = tabla;
         this.accion = accion;
         this.fecfhaHora = fecfhaHora;
-        this.cambios = cambios;
         this.detalle = detalle;
         this.registroId = registroId;
         this.usuariosId = usuariosId;
     }
 
-    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -60,14 +58,6 @@ public class AuditoriaDto {
 
     public void setFecfhaHora(Date fecfhaHora) {
         this.fecfhaHora = fecfhaHora;
-    }
-
-    public Object getCambios() {
-        return cambios;
-    }
-
-    public void setCambios(Object cambios) {
-        this.cambios = cambios;
     }
 
     public String getDetalle() {

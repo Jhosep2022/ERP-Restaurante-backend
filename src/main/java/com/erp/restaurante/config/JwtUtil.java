@@ -50,6 +50,11 @@ public class JwtUtil {
         return Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token).getBody();
     }
 
+    // Extraer el ID del usuario (idUsuario) del token
+    public Integer extractUserId(String token) {
+        return extractClaim(token, claims -> claims.get("idUsuario", Integer.class));  // Extraer el idUsuario
+    }
+
     // Verificar si el token ha expirado
     private Boolean isTokenExpired(String token) {
         return extractExpiration(token).before(new Date());
