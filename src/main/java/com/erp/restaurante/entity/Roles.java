@@ -1,42 +1,37 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.erp.restaurante.entity;
 
-import java.io.Serializable;
-import java.util.Collection;
 import jakarta.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
+
 @Entity
-@Table(name = "roles")
+@Table(name = "Roles")
 public class Roles implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
-    @Basic(optional = false)
-    @Column(name = "nombre")
+
+    @Column(name = "nombre", nullable = false, length = 50)
     private String nombre;
-    @ManyToMany(mappedBy = "rolesCollection", fetch = FetchType.LAZY)
-    private Collection<Permisos> permisosCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "rolesId", fetch = FetchType.LAZY)
-    private Collection<Usuarios> usuariosCollection;
 
-    public Roles() {
-    }
+    @OneToMany(mappedBy = "rol", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<PermisosRol> permisosRoles;
 
-    public Roles(Integer id) {
-        this.id = id;
-    }
+    @OneToMany(mappedBy = "rolesId", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Usuarios> usuariosCollection;
+
+    public Roles() {}
 
     public Roles(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
+    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -53,45 +48,19 @@ public class Roles implements Serializable {
         this.nombre = nombre;
     }
 
-    public Collection<Permisos> getPermisosCollection() {
-        return permisosCollection;
+    public Set<PermisosRol> getPermisosRoles() {
+        return permisosRoles;
     }
 
-    public void setPermisosCollection(Collection<Permisos> permisosCollection) {
-        this.permisosCollection = permisosCollection;
+    public void setPermisosRoles(Set<PermisosRol> permisosRoles) {
+        this.permisosRoles = permisosRoles;
     }
 
-    public Collection<Usuarios> getUsuariosCollection() {
+    public Set<Usuarios> getUsuariosCollection() {
         return usuariosCollection;
     }
 
-    public void setUsuariosCollection(Collection<Usuarios> usuariosCollection) {
+    public void setUsuariosCollection(Set<Usuarios> usuariosCollection) {
         this.usuariosCollection = usuariosCollection;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Roles)) {
-            return false;
-        }
-        Roles other = (Roles) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.erp.restaurante.entity.Roles[ id=" + id + " ]";
-    }
-    
 }

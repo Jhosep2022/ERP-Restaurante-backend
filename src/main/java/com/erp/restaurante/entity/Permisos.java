@@ -1,47 +1,34 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.erp.restaurante.entity;
 
-import java.io.Serializable;
-import java.util.Collection;
 import jakarta.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
+
 @Entity
-@Table(name = "permisos")
-@NamedQueries({
-    @NamedQuery(name = "Permisos.findAll", query = "SELECT p FROM Permisos p"),
-    @NamedQuery(name = "Permisos.findById", query = "SELECT p FROM Permisos p WHERE p.id = :id"),
-    @NamedQuery(name = "Permisos.findByNombre", query = "SELECT p FROM Permisos p WHERE p.nombre = :nombre")})
+@Table(name = "Permisos")
 public class Permisos implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
+    @Column(name = "id", nullable = false)
     private Integer id;
-    @Basic(optional = false)
-    @Column(name = "nombre")
+
+    @Column(name = "nombre", nullable = false, length = 150)
     private String nombre;
-    @JoinTable(name = "permisos_rol", joinColumns = {
-        @JoinColumn(name = "permisos_id", referencedColumnName = "id")}, inverseJoinColumns = {
-        @JoinColumn(name = "roles_id", referencedColumnName = "id")})
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Collection<Roles> rolesCollection;
 
-    public Permisos() {
-    }
+    @OneToMany(mappedBy = "permiso", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<PermisosRol> permisosRoles;
 
-    public Permisos(Integer id) {
-        this.id = id;
-    }
+    public Permisos() {}
 
     public Permisos(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
     }
 
+    // Getters y Setters
     public Integer getId() {
         return id;
     }
@@ -58,37 +45,11 @@ public class Permisos implements Serializable {
         this.nombre = nombre;
     }
 
-    public Collection<Roles> getRolesCollection() {
-        return rolesCollection;
+    public Set<PermisosRol> getPermisosRoles() {
+        return permisosRoles;
     }
 
-    public void setRolesCollection(Collection<Roles> rolesCollection) {
-        this.rolesCollection = rolesCollection;
+    public void setPermisosRoles(Set<PermisosRol> permisosRoles) {
+        this.permisosRoles = permisosRoles;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Permisos)) {
-            return false;
-        }
-        Permisos other = (Permisos) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "com.erp.restaurante.entity.Permisos[ id=" + id + " ]";
-    }
-    
 }
