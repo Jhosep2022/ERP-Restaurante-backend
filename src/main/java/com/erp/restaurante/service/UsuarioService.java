@@ -189,6 +189,20 @@ public class UsuarioService {
         return mapToDto(updatedUsuario);
     }
 
+    public void updatePassword(Integer id, String passwordAntigua, String passwordNueva) {
+        Usuarios usuario = usuariosRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        // Verificar la contraseña antigua
+        if (!PasswordUtil.verifyPassword(passwordAntigua, usuario.getPassword())) {
+            throw new RuntimeException("La contraseña antigua no es correcta");
+        }
+
+        // Actualizar con la nueva contraseña encriptada
+        usuario.setPassword(PasswordUtil.encryptPassword(passwordNueva));
+        usuariosRepository.save(usuario);
+    }
+
     public void delete(Integer id) {
         Usuarios usuario = usuariosRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));

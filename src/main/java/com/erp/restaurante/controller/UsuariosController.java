@@ -1,10 +1,7 @@
 package com.erp.restaurante.controller;
 
 import com.erp.restaurante.config.JwtUtil;
-import com.erp.restaurante.dto.AuthRequestDto;
-import com.erp.restaurante.dto.AuthResponseDto;
-import com.erp.restaurante.dto.ResponseDto;
-import com.erp.restaurante.dto.UsuariosDto;
+import com.erp.restaurante.dto.*;
 import com.erp.restaurante.service.UsuarioService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -97,6 +94,9 @@ public class UsuariosController {
             @RequestBody UsuariosDto usuarioDto,
             @RequestHeader("Authorization") String token) {
 
+        // Eliminar el campo password
+        usuarioDto.setPassword(null);
+
         String extractedToken = token.replace("Bearer ", "");
         String username = jwtUtil.extractUsername(extractedToken);
 
@@ -111,6 +111,22 @@ public class UsuariosController {
         logger.info("Usuario actualizado con éxito: {}", updatedUsuario.getNombre());
         return ResponseEntity.ok(new ResponseDto<>(true, "Usuario actualizado con éxito", updatedUsuario));
     }
+
+    @PutMapping("/{id}/password")
+    public ResponseEntity<ResponseDto<Void>> updatePassword(
+            @PathVariable Integer id,
+            @RequestBody UpdatePasswordDto updatePasswordDto) {
+
+        try {
+            usuarioService.updatePassword(id, updatePasswordDto.getPasswordAntigua(), updatePasswordDto.getPasswordNueva());
+            logger.info("Contraseña actualizada con éxito para el usuario con ID: {}", id);
+            return ResponseEntity.ok(new ResponseDto<>(true, "Contraseña actualizada con éxito", null));
+        } catch (RuntimeException e) {
+            logger.error("Error al actualizar la contraseña: {}", e.getMessage());
+            return ResponseEntity.ok(new ResponseDto<>(false, e.getMessage(), null));
+        }
+    }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ResponseDto<Void>> deleteUsuario(
