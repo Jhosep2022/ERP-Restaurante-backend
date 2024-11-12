@@ -1,19 +1,20 @@
 package com.erp.restaurante.dto;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 public class HistorialSalariosDto {
 
     private Integer id;
     private BigDecimal salario;
-    private int fechapago;
+    private LocalDate fechapago;
     private Integer descuentoId;
     private Integer usuariosId;
 
     public HistorialSalariosDto() {
     }
 
-    public HistorialSalariosDto(Integer id, BigDecimal salario, int fechapago, Integer descuentoId, Integer usuariosId) {
+    public HistorialSalariosDto(Integer id, BigDecimal salario, LocalDate fechapago, Integer descuentoId, Integer usuariosId) {
         this.id = id;
         this.salario = salario;
         this.fechapago = fechapago;
@@ -37,11 +38,11 @@ public class HistorialSalariosDto {
         this.salario = salario;
     }
 
-    public int getFechapago() {
+    public LocalDate getFechapago() {
         return fechapago;
     }
 
-    public void setFechapago(int fechapago) {
+    public void setFechapago(LocalDate fechapago) {
         this.fechapago = fechapago;
     }
 

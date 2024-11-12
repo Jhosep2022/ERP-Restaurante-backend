@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -31,7 +30,7 @@ public class HistorialSalariosService {
         return new HistorialSalariosDto(
                 historialSalarios.getId(),
                 historialSalarios.getSalario(),
-                historialSalarios.getFechapago(),
+                historialSalarios.getFechapago(), // Cambiado a LocalDate
                 historialSalarios.getDescuentoId() != null ? historialSalarios.getDescuentoId().getId() : null,
                 historialSalarios.getUsuariosId() != null ? historialSalarios.getUsuariosId().getId() : null
         );
@@ -42,7 +41,7 @@ public class HistorialSalariosService {
         Historialsalarios historialSalarios = new Historialsalarios();
         historialSalarios.setId(dto.getId());
         historialSalarios.setSalario(dto.getSalario());
-        historialSalarios.setFechapago(dto.getFechapago());
+        historialSalarios.setFechapago(dto.getFechapago()); // Cambiado a LocalDate
 
         if (dto.getDescuentoId() != null) {
             Descuento descuento = descuentoRepository.findById(dto.getDescuentoId())
@@ -82,7 +81,7 @@ public class HistorialSalariosService {
                 .orElseThrow(() -> new RuntimeException("Historial de salarios no encontrado con el ID: " + id));
 
         historialSalarios.setSalario(dto.getSalario());
-        historialSalarios.setFechapago(dto.getFechapago());
+        historialSalarios.setFechapago(dto.getFechapago()); // Cambiado a LocalDate
 
         if (dto.getDescuentoId() != null) {
             Descuento descuento = descuentoRepository.findById(dto.getDescuentoId())

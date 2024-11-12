@@ -2,6 +2,8 @@ package com.erp.restaurante.entity;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDate;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -21,7 +23,7 @@ public class Historialsalarios implements Serializable {
 
     @Basic(optional = false)
     @Column(name = "fechapago")
-    private int fechapago;
+    private LocalDate fechapago; // Cambiado a LocalDate
 
     @JoinColumn(name = "descuento_id", referencedColumnName = "id")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -34,7 +36,8 @@ public class Historialsalarios implements Serializable {
     public Historialsalarios() {
     }
 
-    public Historialsalarios(BigDecimal salario, int fechapago, Descuento descuentoId, Usuarios usuariosId) {
+    public Historialsalarios(Integer id, BigDecimal salario, LocalDate fechapago, Descuento descuentoId, Usuarios usuariosId) {
+        this.id = id;
         this.salario = salario;
         this.fechapago = fechapago;
         this.descuentoId = descuentoId;
@@ -57,11 +60,11 @@ public class Historialsalarios implements Serializable {
         this.salario = salario;
     }
 
-    public int getFechapago() {
+    public LocalDate getFechapago() {
         return fechapago;
     }
 
-    public void setFechapago(int fechapago) {
+    public void setFechapago(LocalDate fechapago) {
         this.fechapago = fechapago;
     }
 
@@ -79,26 +82,5 @@ public class Historialsalarios implements Serializable {
 
     public void setUsuariosId(Usuarios usuariosId) {
         this.usuariosId = usuariosId;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof Historialsalarios)) {
-            return false;
-        }
-        Historialsalarios other = (Historialsalarios) object;
-        return (this.id != null || other.id == null) && (this.id == null || this.id.equals(other.id));
-    }
-
-    @Override
-    public String toString() {
-        return "com.erp.restaurante.entity.Historialsalarios[ id=" + id + " ]";
     }
 }
