@@ -5,14 +5,16 @@ public class PermisosRolDto {
     private Integer permisosRolesId;
     private Integer rolId;
     private Integer permisoId;
+    private Boolean status; // Nuevo campo booleano de estado
 
     // Constructor, Getters, and Setters
     public PermisosRolDto() {}
 
-    public PermisosRolDto(Integer permisosRolesId, Integer rolId, Integer permisoId) {
+    public PermisosRolDto(Integer permisosRolesId, Integer rolId, Integer permisoId, Boolean status) {
         this.permisosRolesId = permisosRolesId;
         this.rolId = rolId;
         this.permisoId = permisoId;
+        this.status = status;
     }
 
     public Integer getPermisosRolesId() {
@@ -37,5 +39,13 @@ public class PermisosRolDto {
 
     public void setPermisoId(Integer permisoId) {
         this.permisoId = permisoId;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }

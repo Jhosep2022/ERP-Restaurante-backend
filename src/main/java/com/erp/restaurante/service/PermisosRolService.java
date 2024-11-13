@@ -45,6 +45,7 @@ public class PermisosRolService {
             PermisosRol permisosRol = new PermisosRol();
             permisosRol.setRol(rol);
             permisosRol.setPermiso(permiso);
+            permisosRol.setStatus(permisosRolDto.getStatus()); // Set status
             permisosRol = permisosRolRepository.save(permisosRol);
             return convertToDto(permisosRol);
         }
@@ -61,6 +62,7 @@ public class PermisosRolService {
             if (rol != null && permiso != null) {
                 permisosRol.setRol(rol);
                 permisosRol.setPermiso(permiso);
+                permisosRol.setStatus(permisosRolDto.getStatus()); // Set status
                 permisosRol = permisosRolRepository.save(permisosRol);
                 return convertToDto(permisosRol);
             }
@@ -80,7 +82,8 @@ public class PermisosRolService {
         return new PermisosRolDto(
                 permisosRol.getPermisosRolesId(),
                 permisosRol.getRol().getId(),
-                permisosRol.getPermiso().getId()
+                permisosRol.getPermiso().getId(),
+                permisosRol.getStatus()
         );
     }
 }

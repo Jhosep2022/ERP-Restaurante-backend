@@ -22,14 +22,17 @@ public class PermisosRol implements Serializable {
     @JoinColumn(name = "Permisos_Id", nullable = false)
     private Permisos permiso;
 
+    @Column(name = "Status", nullable = false)
+    private Boolean status; // Nuevo campo booleano de estado
+
     public PermisosRol() {}
 
-    public PermisosRol(Roles rol, Permisos permiso) {
+    public PermisosRol(Roles rol, Permisos permiso, Boolean status) {
         this.rol = rol;
         this.permiso = permiso;
+        this.status = status;
     }
 
-    // Getters y Setters
     public Integer getPermisosRolesId() {
         return permisosRolesId;
     }
@@ -52,5 +55,13 @@ public class PermisosRol implements Serializable {
 
     public void setPermiso(Permisos permiso) {
         this.permiso = permiso;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 }
